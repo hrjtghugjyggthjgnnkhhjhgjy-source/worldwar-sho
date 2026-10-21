@@ -2,47 +2,154 @@
 
 body {
     height: 100dvh; width: 100vw; overflow: hidden;
-    background-color: #0e1621; /* رنگ پس‌زمینه تلگرام */
+    background-color: #0e1621; 
     color: white;
 }
 
-/* --- 1. صفحه خوش‌آمدگویی --- */
+/* --- 1. صفحه خوش‌آمدگویی و لوگوی کره NEX --- */
 .welcome-screen {
     position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column;
     align-items: center; justify-content: center; background-color: #0e1621;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease;
 }
-.welcome-logo {
-    width: 90px; height: 90px; background: linear-gradient(135deg, #2a9df4, #0078ff);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 45px; margin-bottom: 20px;
+
+.globe-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: floatGlobe 4s ease-in-out infinite;
 }
-.welcome-screen h1 { font-size: 32px; margin-bottom: 10px; letter-spacing: 2px; }
-.welcome-screen p { color: #7f91a4; font-size: 14px; margin-bottom: 40px; text-align: center; }
+
+.globe {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #2a9df4, #0056b3, #001f4d);
+    box-shadow: 0 0 30px rgba(42, 157, 244, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.globe-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 15px 15px;
+    background-position: center;
+    animation: rotateNetwork 20s linear infinite;
+}
+
+.globe-ring {
+    position: absolute;
+    border: 2px solid rgba(42, 157, 244, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(42, 157, 244, 0.3);
+}
+
+.ring1 {
+    width: 130px;
+    height: 40px;
+    transform: rotate(-20deg);
+    animation: spinRing1 6s linear infinite;
+}
+
+.ring2 {
+    width: 40px;
+    height: 130px;
+    transform: rotate(20deg);
+    animation: spinRing2 8s linear infinite;
+}
+
+.globe-shadow {
+    position: absolute;
+    bottom: -20px;
+    width: 60px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: shadowScale 4s ease-in-out infinite;
+}
+
+.nex-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-bottom: 5px;
+    text-shadow: 0 0 20px rgba(42, 157, 244, 0.5);
+}
+
+.nex-subtitle {
+    color: #7f91a4;
+    font-size: 14px;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
 .start-btn {
-    background: #2a9df4; color: white; border: none; padding: 15px 50px;
-    border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer;
-    transition: 0.3s;
+    background: linear-gradient(135deg, #2a9df4, #0056b3);
+    color: white; border: none; padding: 15px 60px;
+    border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(42, 157, 244, 0.4);
+}
+
+/* --- انیمیشن‌ها --- */
+@keyframes floatGlobe {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes shadowScale {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(0.6); opacity: 0.2; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+@keyframes rotateNetwork {
+    0% { background-position: 0 0; }
+    100% { background-position: 30px 30px; }
+}
+
+@keyframes spinRing1 {
+    0% { transform: rotate(-20deg) translateX(0); }
+    50% { transform: rotate(-20deg) translateX(10px); }
+    100% { transform: rotate(-20deg) translateX(0); }
+}
+
+@keyframes spinRing2 {
+    0% { transform: rotate(20deg) translateY(0); }
+    50% { transform: rotate(20deg) translateY(10px); }
+    100% { transform: rotate(20deg) translateY(0); }
 }
 
 /* --- اپلیکیشن اصلی --- */
 .app-container { display: none; height: 100%; flex-direction: column; }
-
-/* هدر بالای صفحه */
 .app-header {
-    background-color: #17212b; /* رنگ هدر تلگرام */
+    background-color: #17212b;
     padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
     z-index: 10;
 }
 .header-menu-btn, .header-search-btn { color: #7f91a4; font-size: 20px; cursor: pointer; }
 .header-logo { font-family: Arial, sans-serif; font-weight: bold; font-size: 20px; color: #fff; letter-spacing: 1px; }
 
-/* محتوای تب‌ها */
 .tab-content { flex-grow: 1; overflow-y: auto; position: relative; padding-bottom: 90px; }
 .tab-pane { display: none; height: 100%; flex-direction: column; }
 .tab-pane.active { display: flex; }
 
-/* --- تب چت‌ها (شبیه تلگرام) --- */
 .chat-list { display: flex; flex-direction: column; }
 .chat-item {
     display: flex; align-items: center; padding: 12px 20px;
@@ -63,11 +170,10 @@ body {
 .chat-time { font-size: 12px; color: #7f91a4; }
 .chat-info p { font-size: 14px; color: #7f91a4; }
 
-/* --- محیط چت --- */
 .chat-room {
     position: absolute; inset: 0; z-index: 20; display: none;
-    flex-direction: column; background-color: #0e1621; /* پس‌زمینه چت */
-    background-image: url('https://web.telegram.org/img/bg_0.png'); /* بک‌گراند معروف تلگرام */
+    flex-direction: column; background-color: #0e1621; 
+    background-image: url('https://web.telegram.org/img/bg_0.png'); 
     background-size: cover; background-blend-mode: overlay;
 }
 .chat-room-header {
@@ -77,14 +183,10 @@ body {
 .back-btn { background: none; border: none; color: #2a9df4; font-size: 20px; cursor: pointer; }
 
 .chat-messages { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-.message { 
-    max-width: 75%; padding: 8px 15px; border-radius: 12px; 
-    font-size: 14px; line-height: 1.5; position: relative;
-}
+.message { max-width: 75%; padding: 8px 15px; border-radius: 12px; font-size: 14px; line-height: 1.5; position: relative; }
 .msg-received { background-color: #182533; align-self: flex-start; border-top-right-radius: 4px; color: #fff; }
 .msg-sent { background-color: #2b5278; align-self: flex-end; border-top-left-radius: 4px; color: #fff; }
 
-/* کادر تایپ تلگرام */
 .chat-input-area { padding: 10px 15px; background-color: #0e1621; }
 .chat-input-container {
     display: flex; align-items: center; background-color: #17212b;
@@ -94,7 +196,6 @@ body {
 .icon-btn { background: transparent; border: none; color: #7f91a4; font-size: 22px; cursor: pointer; padding: 5px; }
 .send-btn { display: none; color: #2a9df4; border: none; background: transparent; font-size: 22px; cursor: pointer; }
 
-/* --- تب پروفایل (تنظیمات تلگرام) --- */
 .profile-content { height: 100%; overflow-y: auto; }
 .profile-card {
     display: flex; flex-direction: column; align-items: center;
@@ -128,24 +229,14 @@ body {
 .setting-text span { font-size: 15px; color: #eee; }
 .setting-arrow { color: #7f91a4; font-size: 14px; }
 
-/* --- منوی پایین (شیشه‌ای شناور) --- */
 .bottom-nav {
-    position: absolute; 
-    bottom: 15px; 
-    left: 15px; 
-    right: 15px; 
-    height: 65px;
-    background: rgba(23, 33, 43, 0.85); /* رنگ هدر تلگرام با شفافیت */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    display: flex; 
-    justify-content: space-around; 
-    align-items: center;
-    border-radius: 20px; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: absolute; bottom: 15px; left: 15px; right: 15px; height: 65px;
+    background: rgba(23, 33, 43, 0.85); 
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    display: flex; justify-content: space-around; align-items: center;
+    border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 15;
 }
-
 .nav-item {
     display: flex; flex-direction: column; align-items: center; color: #7f91a4;
     cursor: pointer; transition: 0.3s; font-size: 11px; gap: 5px;
@@ -153,6 +244,5 @@ body {
 .nav-item i { font-size: 22px; }
 .nav-item.active { color: #2a9df4; }
 
-/* اسکرول‌بار */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
