@@ -29,7 +29,7 @@
     <!-- اپلیکیشن اصلی -->
     <div class="app-container" id="appContainer">
         
-        <!-- هدر -->
+        <!-- هدر (بدون صاعقه) -->
         <div class="app-header" id="mainHeader">
             <div class="header-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <h2 class="header-logo">NEX</h2>
@@ -54,7 +54,7 @@
                     <div class="chat-item" onclick="openChat('تیم NEX', 'nex')">
                         <div class="chat-avatar bg-blue"><i class="fas fa-check"></i></div>
                         <div class="chat-info">
-                            <div class="chat-top"><h4>تیم NEX <i class="fas fa-check-circle verified-badge" style="font-size:12px;"></i></h4><span class="chat-time">اکنون</span></div>
+                            <div class="chat-top"><h4>تیم NEX</h4><span class="chat-time">اکنون</span></div>
                             <p>به پیام‌رسان NEX خوش آمدید...</p>
                         </div>
                     </div>
@@ -97,20 +97,33 @@
                 </div>
             </div>
 
-            <!-- 3. تب پروفایل -->
+            <!-- 3. تب پروفایل (تمیز شده) -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-header-bale">
-                    <div class="profile-avatar-bale"><i class="fas fa-user"></i><div class="edit-icon"><i class="fas fa-pencil-alt"></i></div></div>
-                    <h3 class="profile-name-bale">کاربر نکس <i class="fas fa-check-circle verified-badge"></i></h3>
+                    <div class="profile-avatar-bale"><i class="fas fa-user"></i></div>
+                    <h3 class="profile-name-bale">کاربر نکس</h3>
                     <p class="profile-id-bale">@NexUser | +98 912 *** ****</p>
                 </div>
+                
                 <div class="settings-list-bale">
-                    <div class="setting-item-bale"><div class="setting-icon-bale"><i class="far fa-user"></i></div><span>حساب کاربری</span></div>
-                    <div class="setting-item-bale" onclick="openChat('پیام‌های ذخیره شده', 'saved')"><div class="setting-icon-bale"><i class="fas fa-bookmark"></i></div><span>پیام‌های ذخیره شده</span></div>
-                    <div class="setting-item-bale"><div class="setting-icon-bale"><i class="fas fa-cog"></i></div><span>تنظیمات</span></div>
-                    <div class="setting-item-bale" onclick="logout()"><div class="setting-icon-bale" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div><span style="color: #ff3b30;">خروج از حساب</span></div>
+                    <div class="setting-item-bale">
+                        <div class="setting-icon-bale"><i class="far fa-user"></i></div>
+                        <span>حساب کاربری</span>
+                    </div>
+                    <div class="setting-item-bale" onclick="openChat('پیام‌های ذخیره شده', 'saved')">
+                        <div class="setting-icon-bale"><i class="fas fa-bookmark"></i></div>
+                        <span>پیام‌های ذخیره شده</span>
+                    </div>
+                    <div class="setting-item-bale">
+                        <div class="setting-icon-bale"><i class="fas fa-cog"></i></div>
+                        <span>تنظیمات</span>
+                    </div>
+                    <div class="setting-item-bale" onclick="logout()">
+                        <div class="setting-icon-bale" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
+                        <span style="color: #ff3b30;">خروج از حساب</span>
+                    </div>
                 </div>
-                <div class="app-version-bale"><span>NEX نسخه ۱.۰.۰</span><i class="fas fa-check-circle"></i></div>
+                <div class="app-version-bale"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
 
             <!-- 4. تب خدمات (شبیه بله) -->
@@ -203,7 +216,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین -->
+        <!-- منوی پایین (۴ تب) -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span>
@@ -222,4 +235,4 @@
 
     <script src="script.js"></script>
 </body>
-                                                                                 </html>
+    </html>
