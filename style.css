@@ -1,17 +1,16 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
 body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a; color: #fff; position: fixed; inset: 0; }
 
-/* --- 1. اپلیکیشن اصلی --- */
+/* اپلیکیشن اصلی */
 .app-container { display: flex; height: 100%; flex-direction: column; position: relative; }
-.app-header { background-color: #0078ff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.app-header { background-color: #0078ff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
 .header-menu-btn, .header-search-btn { color: #fff; font-size: 22px; cursor: pointer; }
 .header-logo-text { font-family: Arial, sans-serif; font-weight: bold; font-size: 22px; color: #fff; display: flex; align-items: center; gap: 5px; }
-
 .tab-content { flex-grow: 1; overflow-y: auto; position: relative; padding-bottom: 100px; }
 .tab-pane { display: none; height: 100%; flex-direction: column; width: 100%; }
 .tab-pane.active { display: flex; }
 
-/* --- 2. لیست چت‌ها و مخاطبین --- */
+/* لیست چت‌ها */
 .search-container { padding: 10px 15px; display: flex; align-items: center; background-color: #0b141a; }
 .search-input { flex-grow: 1; background-color: #1f2c34; border: none; border-radius: 20px; padding: 12px 20px; color: #fff; font-size: 14px; outline: none; }
 .chat-list { display: flex; flex-direction: column; }
@@ -24,6 +23,7 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a
 .chat-time { font-size: 12px; color: #7f91a4; }
 .chat-info p { font-size: 14px; color: #7f91a4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+/* مخاطبین و پروفایل و خدمات */
 .contacts-actions { display: flex; gap: 10px; padding: 15px; }
 .action-card { flex: 1; background-color: #1f2c34; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
 .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; background: #2a9df4; }
@@ -35,7 +35,6 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a
 .contact-info h4 { font-size: 16px; color: #fff; margin-bottom: 4px; }
 .contact-info p { font-size: 12px; color: #7f91a4; }
 
-/* --- 3. تب پروفایل و خدمات --- */
 #tab-profile { display: flex; flex-direction: column; height: 100%; width: 100%; overflow-y: auto; }
 .profile-header { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px; background-color: #1f2c34; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 .profile-avatar { width: 90px; height: 90px; border-radius: 50%; background: #2a9df4; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white; margin-bottom: 15px; }
@@ -55,100 +54,58 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a
 .service-item i { font-size: 24px; color: #aaa; margin-bottom: 10px; }
 .service-item span { font-size: 11px; color: #eee; text-align: center; }
 
-/* --- 4. منوی پایین (شیشه‌ای، کاملاً گرد و شناور) --- */
+/* منوی پایین فوق‌العاده شیشه‌ای و کپسولی */
 .bottom-nav { 
     position: absolute; 
-    bottom: 20px; /* فاصله از پایین */
-    left: 20px; 
-    right: 20px; 
-    height: 65px; /* ارتفاع کپسولی */
-    
-    /* افکت شیشه‌ای */
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(25px); 
+    bottom: 20px; 
+    left: 15px; 
+    right: 15px; 
+    height: 65px; 
+    background: rgba(255, 255, 255, 0.05); /* شفافیت بالا */
+    backdrop-filter: blur(25px); /* بلور شدید */
     -webkit-backdrop-filter: blur(25px);
-    
     display: flex; 
     justify-content: space-around; 
     align-items: center; 
-    
-    /* گرد کردن کامل (کپسولی) */
-    border-radius: 50px; 
-    
-    /* حاشیه شیشه‌ای */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.3); 
-    
-    /* سایه عمیق برای حس شناور بودن */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.05);
+    border-radius: 50px; /* کپسولی کامل */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
     z-index: 15; 
 }
-
-.nav-item { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    color: rgba(255, 255, 255, 0.6); 
-    cursor: pointer; 
-    font-size: 10px; 
-    gap: 3px; 
-    padding: 8px 15px; 
-    border-radius: 30px; 
-    transition: all 0.3s ease;
-}
-
-/* تب فعال (کپسولی درخشان) */
-.nav-item.active { 
-    color: #fff; 
-    background: rgba(42, 157, 244, 0.5); 
-    box-shadow: 0 0 15px rgba(42, 157, 244, 0.4);
-}
-
+.nav-item { display: flex; flex-direction: column; align-items: center; color: rgba(255, 255, 255, 0.6); cursor: pointer; font-size: 10px; gap: 3px; padding: 6px 12px; border-radius: 30px; transition: 0.3s;}
+.nav-item.active { color: #fff; background: rgba(42, 157, 244, 0.5); }
 .nav-icon-box i { font-size: 20px; }
 
-/* --- 5. محیط چت --- */
+/* محیط چت */
 .chat-room { position: absolute; inset: 0; z-index: 20; display: none; flex-direction: column; background-color: #0b141a; }
 .chat-room-header { background-color: #0078ff; padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
 .back-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
 .chat-messages { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-.message { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.5; position: relative; word-wrap: break-word; cursor: pointer; }
+.message { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.5; position: relative; word-wrap: break-word; }
 .msg-received { background-color: #1f2c34; align-self: flex-start; color: #fff; }
 .msg-sent { background-color: #0078ff; align-self: flex-end; color: #fff; }
 
-/* --- 6. کادر تایپ (شیشه‌ای، کاملاً گرد و شناور) --- */
-.chat-input-area { 
-    padding: 10px 20px; 
-    background-color: transparent; 
-    padding-bottom: max(15px, env(safe-area-inset-bottom)); 
-    z-index: 30; 
-}
-
+/* کادر تایپ فوق‌العاده شیشه‌ای و کپسولی */
+.chat-input-area { padding: 10px 15px; background-color: transparent; padding-bottom: max(15px, env(safe-area-inset-bottom)); z-index: 30; }
 .chat-input-container { 
     display: flex; 
     align-items: center; 
-    
-    /* افکت شیشه‌ای دقیقاً مثل منوی پایین */
     background-color: rgba(255, 255, 255, 0.05); 
     backdrop-filter: blur(25px); 
     -webkit-backdrop-filter: blur(25px);
-    
-    border-radius: 50px; /* کپسولی کامل */
+    border-radius: 50px; 
     padding: 8px 15px; 
-    
-    /* حاشیه شیشه‌ای */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    
-    /* سایه برای حس شناور بودن */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
-
 .message-input { flex-grow: 1; background: transparent; border: none; color: white; outline: none; font-size: 15px; padding: 0 10px; }
 .icon-btn { background: transparent; border: none; color: rgba(255,255,255,0.7); font-size: 22px; cursor: pointer; padding: 5px; }
 .send-btn { display: none; color: #2a9df4; border: none; background: transparent; font-size: 22px; cursor: pointer; }
 .chat-input-container.disabled { opacity: 0.5; pointer-events: none; }
 
-/* --- 7. پنل ایموجی و منوی کشویی --- */
+/* پنل ایموجی و منوی کشویی و مدال‌ها */
 .emoji-panel { position: absolute; bottom: 90px; left: 15px; right: 15px; height: 250px; background-color: #1f2c34; border-radius: 15px; border: 1px solid #333; display: none; flex-direction: column; z-index: 25; }
 .emoji-panel.show { display: flex; }
 .emoji-tabs { display: flex; justify-content: space-around; padding: 10px; background-color: #1e1e1e; border-bottom: 1px solid #333; }
@@ -162,7 +119,6 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a
 .drawer-item { display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: #eee; font-size: 14px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .drawer-item i { color: #2a9df4; font-size: 18px; width: 20px; text-align: center; }
 
-/* --- 8. پنل ساخت گروه (Modal) --- */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 2000; display: none; justify-content: center; align-items: center; }
 .modal-overlay.show { display: flex; }
 .modal-content { background-color: #1e1e1e; width: 90%; max-width: 400px; border-radius: 20px; border: 1px solid #333; display: flex; flex-direction: column; max-height: 90vh; animation: slideUp 0.3s ease; }
@@ -185,7 +141,6 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a
 .modal-btn.create { width: 100%; background-color: #2a9df4; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 15px; font-weight: bold; cursor: pointer; }
 @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-/* --- 9. صفحه اطلاعات گروه --- */
 .group-info-screen { position: absolute; inset: 0; z-index: 30; background-color: #0e1621; display: none; flex-direction: column; }
 .group-info-header { background-color: #17212b; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .group-info-content { flex-grow: 1; overflow-y: auto; padding-bottom: 20px; }
