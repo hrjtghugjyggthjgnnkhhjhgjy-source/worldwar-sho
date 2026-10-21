@@ -10,10 +10,8 @@
 </head>
 <body>
 
-    <!-- صفحه خوش‌آمدگویی (Splash Screen) -->
+    <!-- صفحه خوش‌آمدگویی -->
     <div class="welcome-screen" id="welcomeScreen">
-        
-        <!-- لوگوی کره جهانی NEX -->
         <div class="globe-container">
             <div class="globe">
                 <div class="globe-inner"></div>
@@ -22,17 +20,15 @@
             </div>
             <div class="globe-shadow"></div>
         </div>
-        
         <h1 class="nex-title">NEX</h1>
         <p class="nex-subtitle">آینده ارتباطات در دستان شما</p>
-        
         <button class="start-btn" onclick="startApp()">ورود به برنامه</button>
     </div>
 
     <!-- اپلیکیشن اصلی -->
     <div class="app-container" id="appContainer">
         
-        <!-- هدر (شبیه تلگرام) -->
+        <!-- هدر -->
         <div class="app-header" id="mainHeader">
             <div class="header-menu-btn"><i class="fas fa-bars"></i></div>
             <h2 class="header-logo">NEX</h2>
@@ -42,72 +38,78 @@
         <div class="tab-content">
             <!-- تب چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
-                <div class="chat-list">
-                    <div class="chat-item" onclick="openChat('رفیق')">
-                        <div class="chat-avatar bg-blue">👤</div>
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="جستجوی گفتگوها">
+                </div>
+
+                <!-- لیست چت‌ها -->
+                <div class="chat-list" id="mainChatList">
+                    <!-- چت تیم NEX (خودکار) -->
+                    <div class="chat-item" onclick="openChat('تیم NEX', 'nex')">
+                        <div class="chat-avatar bg-blue"><i class="fas fa-check"></i></div>
+                        <div class="chat-info">
+                            <div class="chat-top">
+                                <h4>تیم NEX <i class="fas fa-check-circle verified-badge" style="font-size:12px;"></i></h4>
+                                <span class="chat-time">اکنون</span>
+                            </div>
+                            <p>به پیام‌رسان NEX خوش آمدید...</p>
+                        </div>
+                    </div>
+
+                    <!-- چت پیام‌های ذخیره شده -->
+                    <div class="chat-item" onclick="openChat('پیام‌های ذخیره شده', 'saved')">
+                        <div class="chat-avatar bg-green"><i class="fas fa-bookmark"></i></div>
+                        <div class="chat-info">
+                            <div class="chat-top">
+                                <h4>پیام‌های ذخیره شده</h4>
+                            </div>
+                            <p>اینجا فضای شخصی شماست.</p>
+                        </div>
+                    </div>
+
+                    <!-- چت رفیق (تستی) -->
+                    <div class="chat-item" onclick="openChat('رفیق', 'normal')">
+                        <div class="chat-avatar bg-red"><i class="fas fa-user"></i></div>
                         <div class="chat-info">
                             <div class="chat-top">
                                 <h4>رفیق</h4>
-                                <span class="chat-time">10:30</span>
-                            </div>
-                            <p>آخرین پیام...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="chat-item">
-                        <div class="chat-avatar bg-red">گ</div>
-                        <div class="chat-info">
-                            <div class="chat-top">
-                                <h4>گروه دوستان</h4>
                                 <span class="chat-time">دیروز</span>
                             </div>
-                            <p>امیر: سلام بچه‌ها</p>
+                            <p>سلام بچه‌ها...</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- تب پروفایل (تنظیمات) -->
+            <!-- تب پروفایل -->
             <div class="tab-pane" id="tab-profile">
-                <div class="profile-content">
-                    <div class="profile-card">
-                        <div class="profile-avatar" id="profileAvatar">👤</div>
-                        <input type="text" class="profile-name-input" id="profileNameInput" placeholder="نام خود را وارد کنید" value="کاربر نکس">
-                        <p class="profile-phone">+98 912 *** ****</p>
+                <div class="profile-header-bale">
+                    <div class="profile-avatar-bale">
+                        <i class="fas fa-user"></i>
+                        <div class="edit-icon"><i class="fas fa-pencil-alt"></i></div>
                     </div>
-                    
-                    <div class="settings-list">
-                        <div class="setting-item">
-                            <div class="setting-right">
-                                <div class="setting-icon bg-blue"><i class="fas fa-user-edit"></i></div>
-                                <div class="setting-text"><span>ویرایش پروفایل</span></div>
-                            </div>
-                            <i class="fas fa-chevron-left setting-arrow"></i>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-right">
-                                <div class="setting-icon bg-green"><i class="fas fa-bell"></i></div>
-                                <div class="setting-text"><span>اعلان‌ها و صدا</span></div>
-                            </div>
-                            <i class="fas fa-chevron-left setting-arrow"></i>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-right">
-                                <div class="setting-icon bg-orange"><i class="fas fa-lock"></i></div>
-                                <div class="setting-text"><span>حریم خصوصی و امنیت</span></div>
-                            </div>
-                            <i class="fas fa-chevron-left setting-arrow"></i>
-                        </div>
-
-                        <div class="setting-item logout-item" onclick="logout()">
-                            <div class="setting-right">
-                                <div class="setting-icon bg-red"><i class="fas fa-sign-out-alt"></i></div>
-                                <div class="setting-text"><span style="color: #ff3b30;">خروج از حساب</span></div>
-                            </div>
-                        </div>
+                    <h3 class="profile-name-bale" id="profileNameDisplay">کاربر نکس <i class="fas fa-check-circle verified-badge"></i></h3>
+                    <p class="profile-id-bale">@NexUser | +98 912 *** ****</p>
+                </div>
+                
+                <div class="settings-list-bale">
+                    <div class="setting-item-bale">
+                        <div class="setting-icon-bale"><i class="far fa-user"></i></div>
+                        <span>حساب کاربری</span>
                     </div>
+                    <div class="setting-item-bale">
+                        <div class="setting-icon-bale"><i class="fas fa-cog"></i></div>
+                        <span>تنظیمات</span>
+                    </div>
+                    <div class="setting-item-bale" onclick="logout()">
+                        <div class="setting-icon-bale" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
+                        <span style="color: #ff3b30;">خروج از حساب</span>
+                    </div>
+                </div>
+                <div class="app-version-bale">
+                    <span>NEX نسخه ۱.۰.۰</span>
+                    <i class="fas fa-check-circle"></i>
                 </div>
             </div>
         </div>
@@ -116,7 +118,7 @@
         <div class="chat-room" id="chatRoom">
             <div class="chat-room-header">
                 <button class="back-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
-                <h4 id="chatRoomTitle">رفیق</h4>
+                <h4 id="chatRoomTitle">چت</h4>
             </div>
             <div class="chat-messages" id="chatBox"></div>
             <div class="chat-input-area">
@@ -129,23 +131,13 @@
             </div>
         </div>
 
-        <!-- منوی پایین شیشه‌ای -->
+        <!-- منوی پایین -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
-                <i class="fas fa-comment-dots"></i>
-                <span>گفتگوها</span>
-            </div>
-            <div class="nav-item" id="nav-contacts">
-                <i class="fas fa-user-friends"></i>
-                <span>مخاطبین</span>
-            </div>
-            <div class="nav-item" id="nav-settings">
-                <i class="fas fa-cog"></i>
-                <span>تنظیمات</span>
+                <i class="fas fa-comment-dots"></i><span>گفتگوها</span>
             </div>
             <div class="nav-item" id="nav-profile" onclick="switchTab('profile')">
-                <i class="fas fa-user-circle"></i>
-                <span>پروفایل</span>
+                <i class="fas fa-user-circle"></i><span>پروفایل</span>
             </div>
         </div>
     </div>
