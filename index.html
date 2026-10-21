@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <!-- 1. صفحه خوش‌آمدگویی -->
+    <!-- صفحه ورود -->
     <div class="welcome-screen" id="welcomeScreen">
         <div class="logo-container">
             <div class="globe-bg"></div>
@@ -21,18 +21,20 @@
                 <div class="ring ring2"></div>
             </div>
         </div>
+        
         <h1 class="nex-title">NEX</h1>
-        <p class="nex-subtitle">آینده ارتباطات در دستان شما</p>
+        
+        <!-- دکمه ورود -->
         <button class="start-btn" onclick="startApp()">ورود به برنامه</button>
     </div>
 
-    <!-- 2. اپلیکیشن اصلی -->
+    <!-- اپلیکیشن اصلی -->
     <div class="app-container" id="appContainer">
         
-        <!-- هدر (فقط منو و اسم و جستجو) -->
-        <div class="app-header" id="mainHeader">
+        <!-- هدر آبی -->
+        <div class="app-header">
             <div class="header-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <h2 class="header-logo">NEX</h2>
+            <h2 class="header-logo-text"><i class="fas fa-bolt" style="font-size: 18px;"></i> NEX</h2>
             <div class="header-search-btn"><i class="fas fa-search"></i></div>
         </div>
 
@@ -42,13 +44,10 @@
             <div class="drawer-item" onclick="createNewChat('channel')"><i class="fas fa-bullhorn"></i> ساخت کانال جدید</div>
         </div>
 
-        <!-- محتوای تب‌ها -->
         <div class="tab-content">
-            
-            <!-- تب 1: چت‌ها -->
+            <!-- تب چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
                     <input type="text" class="search-input" placeholder="جستجوی گفتگوها">
                 </div>
                 <div class="chat-list" id="mainChatList">
@@ -69,10 +68,9 @@
                 </div>
             </div>
 
-            <!-- تب 2: مخاطبین -->
+            <!-- تب مخاطبین -->
             <div class="tab-pane" id="tab-contacts">
                 <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
                     <input type="text" class="search-input" placeholder="جستجوی مخاطبین">
                 </div>
                 <div class="contacts-actions">
@@ -98,14 +96,13 @@
                 </div>
             </div>
 
-            <!-- تب 3: پروفایل (تمیز و بدون هیچ آیکون اضافی) -->
+            <!-- تب پروفایل -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
                     <h3 class="profile-name">کاربر نکس</h3>
                     <p class="profile-id">@NexUser | +98 912 *** ****</p>
                 </div>
-                
                 <div class="settings-list">
                     <div class="setting-item">
                         <div class="setting-icon"><i class="far fa-user"></i></div>
@@ -127,11 +124,9 @@
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
 
-            <!-- تب 4: خدمات (کاملا جدا) -->
+            <!-- تب خدمات -->
             <div class="tab-pane" id="tab-services">
-                <div class="services-header">
-                    <h3>خدمات پرکاربرد</h3>
-                </div>
+                <div class="services-header"><h3>خدمات پرکاربرد</h3></div>
                 <div class="services-grid">
                     <div class="service-item"><i class="fas fa-wifi"></i><span>بسته اینترنت</span></div>
                     <div class="service-item"><i class="fas fa-battery-full"></i><span>شارژ</span></div>
@@ -153,10 +148,9 @@
             </div>
             <div class="chat-messages" id="chatBox"></div>
             
+            <!-- پنل ایموجی -->
             <div class="emoji-panel" id="emojiPanel">
-                <div class="emoji-grid">
-                    <span onclick="addEmoji('😀')">😀</span><span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('❤️')">❤️</span><span onclick="addEmoji('👍')">👍</span><span onclick="addEmoji('🔥')">🔥</span><span onclick="addEmoji('😍')">😍</span><span onclick="addEmoji('🙏')">🙏</span><span onclick="addEmoji('💔')">💔</span><span onclick="addEmoji('😎')">😎</span><span onclick="addEmoji('😢')">😢</span><span onclick="addEmoji('🎉')">🎉</span><span onclick="addEmoji('👏')">👏</span>
-                </div>
+                <div class="emoji-grid"></div>
             </div>
 
             <div class="chat-input-area">
@@ -169,7 +163,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین (۴ تب) -->
+        <!-- منوی پایین (شیشه‌ای خالص) -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span>
@@ -186,6 +180,8 @@
         </div>
     </div>
 
+    <script src="database.js"></script>
+    <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
