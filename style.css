@@ -185,3 +185,64 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0e1621
 .nav-item { display: flex; flex-direction: column; align-items: center; color: #7f91a4; cursor: pointer; transition: all 0.3s ease; font-size: 11px; gap: 4px; padding: 8px 20px; border-radius: 15px; }
 .nav-item.active { background: rgba(42, 157, 244, 0.15); color: #2a9df4; }
 .nav-item i { font-size: 22px; }
+/* --- اصلاح منوی پایین: شیشه‌ای و ۴ تایی (مثل تلگرام) --- */
+.bottom-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    height: 70px;
+    background: rgba(30, 40, 55, 0.75); /* شیشه‌ای تیره مثل تلگرام */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 15;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #7f91a4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 11px;
+    gap: 4px;
+    padding: 8px 10px;
+    border-radius: 12px;
+}
+
+.nav-item.active {
+    color: #2a9df4; /* رنگ آبی برای تب فعال */
+}
+
+.nav-icon-box i {
+    font-size: 22px;
+}
+
+/* --- اصلاح کادر جستجو: قرارگیری دقیق زیر هدر --- */
+.search-container {
+    background-color: #17212b;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    position: sticky; /* چسبیدن به بالای صفحه */
+    top: 0;
+    z-index: 5;
+}
+
+.search-input {
+    flex-grow: 1;
+    background-color: #242f3d;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
