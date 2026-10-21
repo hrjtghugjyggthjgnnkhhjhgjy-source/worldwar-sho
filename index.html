@@ -5,23 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
     <meta name="color-scheme" content="dark">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- اپلیکیشن اصلی -->
     <div class="app-container" id="appContainer">
         
-        <!-- هدر آبی -->
+        <!-- هدر جدید: فقط NEX سمت چپ -->
         <div class="app-header">
             <div class="header-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <h2 class="header-logo-text"><i class="fas fa-bolt" style="font-size: 18px;"></i> NEX</h2>
-            <div class="header-search-btn"><i class="fas fa-search"></i></div>
+            <h2 class="header-logo-text" style="color: #fff;">NEX</h2>
+            <div></div> <!-- فضای خالی برای چیدمان -->
         </div>
 
-        <!-- منوی کشویی -->
         <div class="drawer-menu" id="drawerMenu">
             <div class="drawer-item" onclick="createNewChat('group')"><i class="fas fa-users"></i> ساخت گروه جدید</div>
             <div class="drawer-item" onclick="createNewChat('channel')"><i class="fas fa-bullhorn"></i> ساخت کانال جدید</div>
@@ -84,7 +81,6 @@
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
                     <h3 class="profile-name">کاربر نکس</h3>
-                    <p class="profile-id">@NexUser</p>
                 </div>
                 <div class="settings-list">
                     <div class="setting-item"><div class="setting-icon"><i class="far fa-user"></i></div><span>حساب کاربری</span></div>
@@ -95,10 +91,11 @@
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
 
-            <!-- تب خدمات -->
+            <!-- تب خدمات (با هوش مصنوعی) -->
             <div class="tab-pane" id="tab-services">
                 <div class="services-header"><h3>خدمات پرکاربرد</h3></div>
                 <div class="services-grid">
+                    <div class="service-item"><i class="fas fa-sparkles" style="color: #2a9df4;"></i><span style="color: #2a9df4;">هوش مصنوعی</span></div>
                     <div class="service-item"><i class="fas fa-wifi"></i><span>بسته اینترنت</span></div>
                     <div class="service-item"><i class="fas fa-battery-full"></i><span>شارژ</span></div>
                     <div class="service-item"><i class="fas fa-ticket-alt"></i><span>قبض</span></div>
@@ -106,17 +103,6 @@
                     <div class="service-item"><i class="fas fa-plane-departure"></i><span>عوارض خروج</span></div>
                     <div class="service-item"><i class="fas fa-tint"></i><span>کیف انرژی</span></div>
                     <div class="service-item"><i class="fas fa-car"></i><span>خدمات خودرو</span></div>
-                    <div class="service-item"><i class="fas fa-chart-line"></i><span>سرمایه‌گذاری</span></div>
-                </div>
-            </div>
-
-            <!-- تب هوش مصنوعی -->
-            <div class="tab-pane" id="tab-ai">
-                <div class="ai-container">
-                    <div class="ai-icon"><i class="fas fa-sparkles"></i></div>
-                    <h3>دستیار هوشمند NEX</h3>
-                    <p>به زودی می‌تونید با هوش مصنوعی NEX چت کنید!</p>
-                    <button class="auth-btn" style="margin-top: 20px; width: auto; padding: 10px 30px;" onclick="alert('به زودی...')">به زودی...</button>
                 </div>
             </div>
         </div>
@@ -129,7 +115,13 @@
                 <i class="fas fa-info-circle" style="margin-right: auto; color: #fff; cursor: pointer;" onclick="showGroupInfoForCurrentChat()"></i>
             </div>
             <div class="chat-messages" id="chatBox"></div>
-            <div class="emoji-panel" id="emojiPanel"><div class="emoji-grid"></div></div>
+            
+            <!-- پنل ایموجی -->
+            <div class="emoji-panel" id="emojiPanel">
+                <div class="emoji-tabs" id="emojiTabs"></div>
+                <div class="emoji-grid" id="emojiGrid"></div>
+            </div>
+
             <div class="chat-input-area">
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
@@ -140,55 +132,12 @@
             </div>
         </div>
 
-        <!-- صفحه اطلاعات گروه -->
-        <div class="group-info-screen" id="groupInfoScreen">
-            <div class="group-info-header">
-                <button class="back-btn" onclick="closeGroupInfo()"><i class="fas fa-arrow-right"></i></button>
-                <h4>اطلاعات گروه</h4>
-                <i class="fas fa-ellipsis-v" style="color: #fff; cursor: pointer;"></i>
-            </div>
-            <div class="group-info-content">
-                <div class="group-main-info">
-                    <div class="group-avatar-large bg-blue"><i class="fas fa-users"></i></div>
-                    <h2 class="group-title" id="groupTitleDisplay">WORLD WAR</h2>
-                    <p class="group-members-count" id="groupMembersCount">۵۸۸ عضو</p>
-                </div>
-                <div class="group-section">
-                    <h4 class="section-title">درباره گروه</h4>
-                    <div class="section-content" id="groupDescription">...</div>
-                </div>
-                <div class="group-row">
-                    <div class="row-icon"><i class="fas fa-link"></i></div>
-                    <div class="row-text">
-                        <span class="row-label">شناسه گروه</span>
-                        <span class="row-value" id="groupLinkDisplay">@...</span>
-                    </div>
-                </div>
-                <div class="group-row">
-                    <div class="row-icon"><i class="fas fa-bell"></i></div>
-                    <div class="row-text"><span class="row-label">اعلان‌ها</span></div>
-                    <div class="toggle-switch active"></div>
-                </div>
-                <div class="group-section">
-                    <div class="section-header-flex"><h4 class="section-title">اعضا</h4><i class="fas fa-search" style="color: #aaa;"></i></div>
-                    <div class="member-list" id="groupMemberList">
-                        <!-- اعضا اینجا لود می‌شن -->
-                    </div>
-                </div>
-                <div class="group-actions">
-                    <div class="action-row text-red"><i class="fas fa-trash"></i> ترک و حذف گروه</div>
-                    <div class="action-row text-blue"><i class="fas fa-user-plus"></i> افزودن عضو</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- منوی پایین -->
+        <!-- منوی پایین (بدون هوش مصنوعی) -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')"><div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span></div>
             <div class="nav-item" id="nav-contacts" onclick="switchTab('contacts')"><div class="nav-icon-box"><i class="fas fa-user-friends"></i></div><span>مخاطبین</span></div>
             <div class="nav-item" id="nav-profile" onclick="switchTab('profile')"><div class="nav-icon-box"><i class="fas fa-user-circle"></i></div><span>پروفایل</span></div>
             <div class="nav-item" id="nav-services" onclick="switchTab('services')"><div class="nav-icon-box"><i class="fas fa-th-large"></i></div><span>خدمات</span></div>
-            <div class="nav-item" id="nav-ai" onclick="switchTab('ai')"><div class="nav-icon-box"><i class="fas fa-sparkles"></i></div><span>هوش مصنوعی</span></div>
         </div>
     </div>
 
@@ -224,8 +173,35 @@
         </div>
     </div>
 
+    <!-- صفحه اطلاعات گروه -->
+    <div class="group-info-screen" id="groupInfoScreen">
+        <div class="group-info-header">
+            <button class="back-btn" onclick="closeGroupInfo()"><i class="fas fa-arrow-right"></i></button>
+            <h4>اطلاعات گروه</h4>
+        </div>
+        <div class="group-info-content">
+            <div class="group-main-info">
+                <div class="group-avatar-large bg-blue"><i class="fas fa-users"></i></div>
+                <h2 class="group-title" id="groupTitleDisplay">گروه</h2>
+                <p class="group-members-count" id="groupMembersCount">۰ عضو</p>
+            </div>
+            <div class="group-section">
+                <h4 class="section-title">درباره گروه</h4>
+                <div class="section-content" id="groupDescription">...</div>
+            </div>
+            <div class="group-row">
+                <div class="row-icon"><i class="fas fa-link"></i></div>
+                <div class="row-text"><span class="row-label">شناسه گروه</span><span class="row-value" id="groupLinkDisplay">@...</span></div>
+            </div>
+            <div class="group-section">
+                <div class="section-header-flex"><h4 class="section-title">اعضا</h4></div>
+                <div class="member-list" id="groupMemberList"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="database.js"></script>
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-                </html>
+    </html>
