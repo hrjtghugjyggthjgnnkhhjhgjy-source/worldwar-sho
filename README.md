@@ -1,2 +1,0 @@
-# worldwar-sho
-star-battle
