@@ -32,7 +32,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// --- 3. ساخت گروه و کانال (از منو یا مخاطبین) ---
+// --- 3. ساخت گروه و کانال ---
 function createNewChat(type) {
     const name = prompt(`اسم ${type === 'group' ? 'گروه' : 'کانال'} جدیدت رو وارد کن:`);
     if (name && name.trim() !== "") {
@@ -54,10 +54,9 @@ function createNewChat(type) {
                 <p>${type === 'group' ? 'گروه' : 'کانال'} جدید ایجاد شد.</p>
             </div>
         `;
-        chatList.prepend(newChat); // اضافه شدن به بالای لیست
+        chatList.prepend(newChat);
         alert(`${type === 'group' ? 'گروه' : 'کانال'} با موفقیت ساخته شد!`);
         
-        // بستن منو و رفتن به تب چت
         document.getElementById('drawerMenu').classList.remove('show');
         switchTab('chats');
     }
@@ -93,6 +92,7 @@ function openChat(name, type) {
     chatRoom.style.display = 'flex';
     chatBox.innerHTML = ''; 
 
+    // کادر تایپ برای تیم NEX و پیام‌های ذخیره شده غیرفعاله
     if (type === 'nex' || type === 'saved') {
         chatInputContainer.classList.add('disabled');
     } else {
@@ -100,9 +100,9 @@ function openChat(name, type) {
     }
 
     if (type === 'nex') {
-        chatBox.innerHTML = `<div class="message msg-received" style="background: #2a9df4; color: white;">سلام! به پیام‌رسان <b>NEX</b> خوش آمدید. 🎉<br>اینجا فضای امن و خصوصی شماست.</div>`;
+        chatBox.innerHTML = `<div class="message msg-received" style="background: #444; color: white;">سلام! به پیام‌رسان <b>NEX</b> خوش آمدید. 🎉<br>اینجا فضای امن و خصوصی شماست.</div>`;
     } else if (type === 'saved') {
-        chatBox.innerHTML = `<div class="message msg-received" style="background: transparent; color: #7f91a4; text-align: center; align-self: center; margin-top: 50px;"><i class="fas fa-bookmark" style="font-size: 30px; margin-bottom: 10px;"></i><br>هر چیزی که می‌خواهید اینجا ذخیره کنید.</div>`;
+        chatBox.innerHTML = `<div class="message msg-received" style="background: transparent; color: #888; text-align: center; align-self: center; margin-top: 50px;"><i class="fas fa-bookmark" style="font-size: 30px; margin-bottom: 10px;"></i><br>هر چیزی که می‌خواهید اینجا ذخیره کنید.</div>`;
     } else {
         chatBox.innerHTML = '<div class="message msg-received">سلام! این یک پیام تستی است.</div>';
     }
@@ -135,6 +135,7 @@ function sendMessage() {
     sendBtn.style.display = 'none';
     micBtn.style.display = 'flex';
 
+    // پاسخ خودکار فقط برای چت‌های عادی (نه تیم NEX و نه Saved)
     if (chatTitle.textContent !== 'تیم NEX' && chatTitle.textContent !== 'پیام‌های ذخیره شده') {
         setTimeout(() => {
             const replyMsg = document.createElement('div');
@@ -169,4 +170,4 @@ function logout() {
     localStorage.removeItem('nexUser');
     localStorage.removeItem('welcomeShown');
     location.reload();
-        }
+}
