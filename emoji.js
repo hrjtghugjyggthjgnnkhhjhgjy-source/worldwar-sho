@@ -1,18 +1,56 @@
-// --- فایل اختصاصی مدیریت ایموجی‌ها ---
+// --- فایل اختصاصی مدیریت ایموجی‌ها (شبیه تلگرام) ---
 
-const emojiList = [
-    '😀', '😂', '❤️', '👍', '🔥', '😍', '🙏', '💔', 
-    '😎', '😢', '🎉', '👏', '✨', '💯', '🚀', '🌹',
-    '😡', '😱', '🤔', '😴', '🤝', '💪', '👀', '🤯'
-];
+// دیتابیس ایموجی‌ها به تفکیک دسته‌بندی
+const emojiCategories = {
+    smileys: ['😀', '😂', '❤️', '👍', '🔥', '😍', '🙏', '💔', '😎', '😢', '🎉', '👏', '✨', '💯', '😡', '😱', '🤔', '😴', '🤝', '💪', '👀', '🤯', '🥶', '🤩'],
+    animals: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔', '🐧', '🐦', '🐤', '🦆', '🦅', '🦉', '🦇', '🐺'],
+    food: ['🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒', '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🥬', '🥒', '🌶', '🌽'],
+    sports: ['⚽', '🏀', '🏈', '⚾', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓', '🏸', '🏒', '🏑', '🥍', '🏏', '🪃', '🥅', '⛳', '🪁', '🏹', '🎣', '🤿'],
+    symbols: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️', '✝️', '☪️', '🕉', '☸️'],
+    objects: ['📱', '💻', '⌨️', '🖥', '🖨', '🖱', '🖲', '🕹', '🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽', '🎞', '📞', '☎️', '📟', '📠']
+};
 
-function initEmojiPanel() {
+let currentCategory = 'smileys'; // دسته پیش‌فرض
+
+// ۱. ساخت نوار دسته‌بندی (بالای پنل)
+function initEmojiTabs() {
+    const emojiPanel = document.getElementById('emojiPanel');
+    if (!emojiPanel) return;
+
+    // ساخت کانتینر تب‌ها
+    const tabsContainer = document.createElement('div');
+    tabsContainer.className = 'emoji-tabs';
+    
+    // ساخت آیکون‌های تب
+    const tabs = [
+        { id: 'smileys', icon: 'fa-smile' },
+        { id: 'animals', icon: 'fa-paw' },
+        { id: 'food', icon: 'fa-utensils' },
+        { id: 'sports', icon: 'fa-futbol' },
+        { id: 'symbols', icon: 'fa-heart' },
+        { id: 'objects', icon: 'fa-mobile-alt' }
+    ];
+
+    tabs.forEach(tab => {
+        const btn = document.createElement('button');
+        btn.innerHTML = `<i class="fas ${tab.icon}"></i>`;
+        btn.className = tab.id === currentCategory ? 'active' : '';
+        btn.onclick = () => switchCategory(tab.id);
+        tabsContainer.appendChild(btn);
+    });
+
+    // اضافه کردن تب‌ها به بالای پنل ایموجی
+    emojiPanel.prepend(tabsContainer);
+}
+
+// ۲. ساخت لیست ایموجی‌ها
+function renderEmojis(category) {
     const emojiGrid = document.querySelector('.emoji-grid');
-    if (!emojiGrid) return; 
+    if (!emojiGrid) return;
 
-    emojiGrid.innerHTML = ''; 
+    emojiGrid.innerHTML = ''; // پاک کردن قبلی‌ها
 
-    emojiList.forEach(emoji => {
+    emojiCategories[category].forEach(emoji => {
         const span = document.createElement('span');
         span.textContent = emoji;
         span.onclick = () => addEmojiToInput(emoji);
@@ -20,6 +58,26 @@ function initEmojiPanel() {
     });
 }
 
+// ۳. تغییر دسته‌بندی با کلیک روی تب‌ها
+function switchCategory(category) {
+    currentCategory = category;
+    renderEmojis(category);
+
+    // آپدیت کردن ظاهر تب‌ها (فعال/غیرفعال)
+    const tabsContainer = document.querySelector('.emoji-tabs');
+    if (tabsContainer) {
+        Array.from(tabsContainer.children).forEach((btn, index) => {
+            const tabIds = ['smileys', 'animals', 'food', 'sports', 'symbols', 'objects'];
+            if (tabIds[index] === category) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+}
+
+// ۴. اضافه کردن ایموجی به کادر تایپ
 function addEmojiToInput(emoji) {
     const messageInput = document.getElementById('messageInput');
     const sendBtn = document.getElementById('sendBtn');
@@ -36,6 +94,7 @@ function addEmojiToInput(emoji) {
     }
 }
 
+// ۵. باز و بسته کردن پنل
 function toggleEmojiPanel() {
     const emojiPanel = document.getElementById('emojiPanel');
     const messageInput = document.getElementById('messageInput');
@@ -48,6 +107,8 @@ function toggleEmojiPanel() {
     }
 }
 
+// --- راه‌اندازی اولیه ---
 document.addEventListener('DOMContentLoaded', () => {
-    initEmojiPanel();
+    initEmojiTabs();       // ساخت تب‌ها
+    renderEmojis('smileys'); // نمایش ایموجی‌های دسته اول
 });
