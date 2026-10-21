@@ -1,21 +1,29 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
 
-/* تم خاکستری تیره برای کل اپ */
-body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #1a1a1a; color: white; position: fixed; inset: 0; }
+/* تم خاکستری تیره */
+body { 
+    height: 100dvh; 
+    width: 100vw; 
+    overflow: hidden; 
+    background-color: #1e1e1e; /* خاکستری تیره */
+    color: white; 
+    position: fixed; 
+    inset: 0; 
+}
 
 /* --- 1. صفحه خوش‌آمدگویی --- */
-.welcome-screen { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #1a1a1a; transition: opacity 0.6s ease; }
+.welcome-screen { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #1e1e1e; transition: opacity 0.6s ease; }
 .globe-container { position: relative; width: 120px; height: 120px; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; animation: floatGlobe 4s ease-in-out infinite; }
-.globe { position: relative; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #5a5a5a, #2a2a2a, #111111); box-shadow: 0 0 30px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.05); display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.globe { position: relative; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #555, #2a2a2a, #111); box-shadow: 0 0 30px rgba(255, 255, 255, 0.1); display: flex; justify-content: center; align-items: center; overflow: hidden; }
 .globe-inner { width: 100%; height: 100%; border-radius: 50%; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 15px 15px; background-position: center; animation: rotateNetwork 20s linear infinite; }
 .globe-ring { position: absolute; border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 50%; }
 .ring1 { width: 130px; height: 40px; transform: rotate(-20deg); animation: spinRing1 6s linear infinite; }
 .ring2 { width: 40px; height: 130px; transform: rotate(20deg); animation: spinRing2 8s linear infinite; }
 .globe-shadow { position: absolute; bottom: -20px; width: 60px; height: 10px; background: rgba(0, 0, 0, 0.5); border-radius: 50%; filter: blur(5px); animation: shadowScale 4s ease-in-out infinite; }
-.nex-title { font-family: 'Arial', sans-serif; font-size: 40px; font-weight: 900; letter-spacing: 5px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+.nex-title { font-family: 'Arial', sans-serif; font-size: 40px; font-weight: 900; letter-spacing: 5px; color: #fff; margin-bottom: 5px; }
 .nex-subtitle { color: #888; font-size: 14px; margin-bottom: 50px; letter-spacing: 1px; }
-.start-btn { background: #333; color: white; border: 1px solid #555; padding: 15px 60px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); }
-.start-btn:active { background: #444; }
+.start-btn { background: #444; color: white; border: none; padding: 15px 60px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; }
+.start-btn:active { background: #555; }
 
 @keyframes floatGlobe { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
 @keyframes shadowScale { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(0.6); opacity: 0.2; } 100% { transform: scale(1); opacity: 0.5; } }
@@ -23,45 +31,40 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #1a1a1a
 @keyframes spinRing1 { 0% { transform: rotate(-20deg) translateX(0); } 50% { transform: rotate(-20deg) translateX(10px); } 100% { transform: rotate(-20deg) translateX(0); } }
 @keyframes spinRing2 { 0% { transform: rotate(20deg) translateY(0); } 50% { transform: rotate(20deg) translateY(10px); } 100% { transform: rotate(20deg) translateY(0); } }
 
-/* --- 2. اپلیکیشن اصلی (تم خاکستری) --- */
+/* --- 2. اپلیکیشن اصلی --- */
 .app-container { display: none; height: 100%; flex-direction: column; position: relative; }
 
 /* هدر */
-.app-header { background-color: rgba(40, 40, 40, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-.header-menu-btn, .header-search-btn { color: #aaa; font-size: 22px; cursor: pointer; transition: color 0.2s; }
-.header-menu-btn:active, .header-search-btn:active { color: #fff; }
-.header-logo { font-family: Arial, sans-serif; font-weight: bold; font-size: 22px; color: #fff; letter-spacing: 1px; }
+.app-header { background-color: rgba(45, 45, 45, 0.95); backdrop-filter: blur(10px); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.header-menu-btn, .header-search-btn { color: #aaa; font-size: 22px; cursor: pointer; }
+.header-logo { font-family: Arial, sans-serif; font-weight: bold; font-size: 22px; color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 5px; }
 
 /* محتوای تب‌ها */
-.tab-content { flex-grow: 1; overflow-y: auto; position: relative; padding-bottom: 95px; }
+.tab-content { flex-grow: 1; overflow-y: auto; position: relative; padding-bottom: 90px; }
 .tab-pane { display: none; height: 100%; flex-direction: column; }
 .tab-pane.active { display: flex; }
 
 /* کادر جستجو */
-.search-container { background-color: #222; padding: 10px 15px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 5; border-bottom: 1px solid rgba(255, 255, 255, 0.02); }
-.search-input { flex-grow: 1; background-color: #333; border: none; border-radius: 20px; padding: 12px 20px; color: #fff; font-size: 14px; outline: none; transition: 0.3s; }
-.search-input:focus { background-color: #444; }
+.search-container { background-color: #252525; padding: 10px 15px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 5; }
+.search-input { flex-grow: 1; background-color: #333; border: none; border-radius: 20px; padding: 12px 20px; color: #fff; font-size: 14px; outline: none; }
+.search-input::placeholder { color: #888; }
 
 /* لیست چت‌ها */
 .chat-list { display: flex; flex-direction: column; }
-.chat-item { display: flex; align-items: center; padding: 12px 20px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.03); transition: background 0.2s; }
+.chat-item { display: flex; align-items: center; padding: 15px 20px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.03); transition: background 0.2s; }
 .chat-item:active { background-color: #2a2a2a; }
 .chat-avatar { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-left: 15px; color: white; flex-shrink: 0; }
-.bg-blue { background: #4a4a4a; } /* آبی رو برداشتم تا خاکستری یکدست بشه */
-.bg-red { background: #5a3a3a; }
-.bg-green { background: #3a5a3a; }
-.bg-orange { background: #5a4a3a; }
-.bg-gray { background: #444; }
+.bg-blue { background: #4a4a4a; } .bg-green { background: #3a5a3a; } .bg-orange { background: #5a4a3a; } .bg-gray { background: #444; } .bg-purple { background: #4a3a5a; }
 .chat-info { flex-grow: 1; overflow: hidden; }
 .chat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
 .chat-top h4 { font-size: 16px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 5px; }
-.chat-time { font-size: 12px; color: #888; flex-shrink: 0; margin-right: 5px; }
+.chat-time { font-size: 12px; color: #888; }
 .chat-info p { font-size: 14px; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.verified-badge { color: #aaa; }
 
 /* --- 3. تب مخاطبین --- */
 .contacts-actions { display: flex; gap: 10px; padding: 15px; }
-.action-card { flex: 1; background-color: #2a2a2a; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; transition: 0.2s; }
-.action-card:active { background-color: #333; }
+.action-card { flex: 1; background-color: #2a2a2a; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
 .action-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; background: #444; }
 .action-card span { font-size: 13px; color: #eee; }
 .contacts-list-header { padding: 10px 20px; font-size: 12px; color: #aaa; font-weight: bold; }
@@ -71,95 +74,63 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #1a1a1a
 .contact-info h4 { font-size: 16px; color: #fff; margin-bottom: 4px; }
 .contact-info p { font-size: 12px; color: #888; }
 
-/* --- 4. محیط چت --- */
-.chat-room { position: absolute; inset: 0; z-index: 20; display: none; flex-direction: column; background-color: #1a1a1a; background-image: url('https://web.telegram.org/img/bg_0.png'); background-size: cover; background-blend-mode: overlay; }
-.chat-room-header { background-color: rgba(40, 40, 40, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 10; }
-.back-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 5px; }
-.chat-messages { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-.message { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.5; position: relative; word-wrap: break-word; }
-.msg-received { background-color: #333; align-self: flex-start; border-bottom-right-radius: 4px; color: #fff; }
-.msg-sent { background-color: #555; align-self: flex-end; border-bottom-left-radius: 4px; color: #fff; }
-
-/* --- 5. کادر تایپ --- */
-.chat-input-area { padding: 10px 15px; background-color: transparent; padding-bottom: max(10px, env(safe-area-inset-bottom)); position: relative; z-index: 30; }
-.chat-input-container { display: flex; align-items: center; background-color: rgba(50, 50, 50, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 50px; padding: 8px 15px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
-.message-input { flex-grow: 1; background: transparent; border: none; color: white; outline: none; font-size: 15px; padding: 0 10px; }
-.icon-btn { background: transparent; border: none; color: #888; font-size: 22px; cursor: pointer; padding: 5px; transition: color 0.2s; }
-.icon-btn:active { color: #fff; }
-.send-btn { display: none; color: #fff; border: none; background: transparent; font-size: 22px; cursor: pointer; }
-.chat-input-container.disabled { opacity: 0.5; pointer-events: none; }
-
-/* --- 6. پنل ایموجی --- */
-.emoji-panel { position: absolute; bottom: 80px; left: 15px; right: 15px; height: 250px; background-color: rgba(40, 40, 40, 0.95); backdrop-filter: blur(20px); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05); display: none; flex-direction: column; z-index: 25; box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3); overflow: hidden; }
-.emoji-panel.show { display: flex; animation: slideUp 0.3s ease; }
-.emoji-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 15px; overflow-y: auto; height: 100%; }
-.emoji-grid span { font-size: 26px; cursor: pointer; text-align: center; transition: transform 0.2s; }
-.emoji-grid span:hover { transform: scale(1.2); }
-@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-/* --- 7. تب پروفایل --- */
-#tab-profile { display: flex; flex-direction: column; background-color: #1a1a1a; height: 100%; overflow-y: auto; width: 100%; }
+/* --- 4. تب پروفایل --- */
+#tab-profile { display: flex; flex-direction: column; height: 100%; overflow-y: auto; width: 100%; }
 .profile-header-bale { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px; background-color: #2a2a2a; border-bottom: 1px solid rgba(255, 255, 255, 0.05); width: 100%; }
 .profile-avatar-bale { width: 90px; height: 90px; border-radius: 50%; background: #444; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white; position: relative; margin-bottom: 15px; }
 .edit-icon { position: absolute; bottom: 0; right: 0; background: #2a2a2a; color: #888; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; border: 2px solid #2a2a2a; }
 .profile-name-bale { font-size: 18px; color: #fff; display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 5px; }
-.verified-badge { color: #fff; font-size: 16px; }
 .profile-id-bale { font-size: 13px; color: #888; text-align: center; }
-.settings-list-bale { display: flex; flex-direction: column; background-color: #1a1a1a; margin-top: 10px; width: 100%; }
+.settings-list-bale { display: flex; flex-direction: column; margin-top: 10px; width: 100%; }
 .setting-item-bale { display: flex; align-items: center; padding: 18px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.03); cursor: pointer; transition: background 0.2s; width: 100%; }
 .setting-item-bale:active { background-color: #2a2a2a; }
 .setting-icon-bale { color: #888; font-size: 20px; margin-left: 15px; width: 25px; text-align: center; }
 .setting-item-bale span { font-size: 15px; color: #eee; }
 .app-version-bale { text-align: center; padding: 30px 0; font-size: 12px; color: #666; display: flex; justify-content: center; align-items: center; gap: 5px; }
 
-/* --- 8. منوی پایین --- */
-.bottom-nav { position: absolute; bottom: 15px; left: 15px; right: 15px; height: 70px; background: rgba(40, 40, 40, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); z-index: 15; }
-.nav-item { display: flex; flex-direction: column; align-items: center; color: #888; cursor: pointer; transition: all 0.3s ease; font-size: 11px; gap: 4px; padding: 8px 15px; border-radius: 12px; }
+/* --- 5. تب خدمات --- */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; }
+.service-item { background-color: #2a2a2a; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 10px; cursor: pointer; transition: background 0.2s; border: 1px solid rgba(255,255,255,0.05); }
+.service-item:active { background-color: #333; }
+.service-item i { font-size: 28px; color: #aaa; margin-bottom: 10px; }
+.service-item span { font-size: 12px; color: #eee; font-weight: 500; }
+
+/* --- 6. منوی پایین (۴ تب) --- */
+.bottom-nav { position: absolute; bottom: 15px; left: 15px; right: 15px; height: 70px; background: rgba(40, 40, 40, 0.95); backdrop-filter: blur(15px); display: flex; justify-content: space-around; align-items: center; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); z-index: 15; }
+.nav-item { display: flex; flex-direction: column; align-items: center; color: #888; cursor: pointer; transition: all 0.3s ease; font-size: 11px; gap: 4px; padding: 8px 10px; border-radius: 12px; }
 .nav-item.active { color: #fff; background: rgba(255, 255, 255, 0.05); }
 .nav-icon-box i { font-size: 22px; }
 
-/* --- 9. منوی کشویی --- */
+/* --- 7. منوی کشویی --- */
 .drawer-menu { position: absolute; top: 65px; right: -260px; width: 230px; background: rgba(40, 40, 40, 0.95); backdrop-filter: blur(20px); border-radius: 15px 0 0 15px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.5); z-index: 100; transition: right 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; padding: 10px 0; }
 .drawer-menu.show { right: 0; }
 .drawer-item { display: flex; align-items: center; gap: 15px; padding: 15px 20px; color: #eee; font-size: 14px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.2s; }
 .drawer-item:active { background: rgba(255, 255, 255, 0.1); }
-.drawer-item i { color: #fff; font-size: 18px; width: 20px; text-align: center; }
+.drawer-item i { color: #aaa; font-size: 18px; width: 20px; text-align: center; }
+
+/* --- 8. محیط چت (Chat Room) --- */
+.chat-room { position: absolute; inset: 0; z-index: 20; display: none; flex-direction: column; background-color: #1e1e1e; }
+.chat-room-header { background-color: #2a2a2a; padding: 15px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); z-index: 10; }
+.back-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 5px; }
+.chat-messages { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.message { max-width: 80%; padding: 10px 15px; border-radius: 15px; font-size: 14px; line-height: 1.5; position: relative; word-wrap: break-word; }
+.msg-received { background-color: #333; align-self: flex-start; border-bottom-right-radius: 4px; color: #fff; }
+.msg-sent { background-color: #555; align-self: flex-end; border-bottom-left-radius: 4px; color: #fff; }
+
+/* کادر تایپ */
+.chat-input-area { padding: 10px 15px; background-color: transparent; padding-bottom: max(10px, env(safe-area-inset-bottom)); position: relative; z-index: 30; }
+.chat-input-container { display: flex; align-items: center; background-color: #333; border-radius: 50px; padding: 8px 15px; border: 1px solid rgba(255, 255, 255, 0.05); }
+.message-input { flex-grow: 1; background: transparent; border: none; color: white; outline: none; font-size: 15px; padding: 0 10px; }
+.icon-btn { background: transparent; border: none; color: #888; font-size: 22px; cursor: pointer; padding: 5px; }
+.send-btn { display: none; color: #fff; border: none; background: transparent; font-size: 22px; cursor: pointer; }
+.chat-input-container.disabled { opacity: 0.5; pointer-events: none; }
+
+/* پنل ایموجی */
+.emoji-panel { position: absolute; bottom: 80px; left: 15px; right: 15px; height: 250px; background-color: #2a2a2a; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05); display: none; flex-direction: column; z-index: 25; box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3); overflow: hidden; }
+.emoji-panel.show { display: flex; }
+.emoji-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 15px; overflow-y: auto; height: 100%; }
+.emoji-grid span { font-size: 26px; cursor: pointer; text-align: center; }
+.emoji-grid span:hover { transform: scale(1.2); }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-/* استایل تب خدمات */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    padding: 20px;
-}
-
-.service-item {
-    background-color: #f8f9fa; /* رنگ روشن */
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 10px;
-    cursor: pointer;
-    transition: background 0.2s;
-    border: 1px solid #eee;
-}
-
-.service-item:active {
-    background-color: #e9ecef;
-}
-
-.service-item i {
-    font-size: 28px;
-    color: #0078ff; /* رنگ آبی برند */
-    margin-bottom: 10px;
-}
-
-.service-item span {
-    font-size: 12px;
-    color: #333;
-    font-weight: 500;
-}
