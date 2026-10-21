@@ -1,248 +1,84 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
+body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0e1621; color: white; }
 
-body {
-    height: 100dvh; width: 100vw; overflow: hidden;
-    background-color: #0e1621; 
-    color: white;
-}
-
-/* --- 1. صفحه خوش‌آمدگویی و لوگوی کره NEX --- */
-.welcome-screen {
-    position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; background-color: #0e1621;
-    transition: opacity 0.6s ease;
-}
-
-.globe-container {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: floatGlobe 4s ease-in-out infinite;
-}
-
-.globe {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #2a9df4, #0056b3, #001f4d);
-    box-shadow: 0 0 30px rgba(42, 157, 244, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.globe-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-image: 
-        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 15px 15px;
-    background-position: center;
-    animation: rotateNetwork 20s linear infinite;
-}
-
-.globe-ring {
-    position: absolute;
-    border: 2px solid rgba(42, 157, 244, 0.4);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(42, 157, 244, 0.3);
-}
-
-.ring1 {
-    width: 130px;
-    height: 40px;
-    transform: rotate(-20deg);
-    animation: spinRing1 6s linear infinite;
-}
-
-.ring2 {
-    width: 40px;
-    height: 130px;
-    transform: rotate(20deg);
-    animation: spinRing2 8s linear infinite;
-}
-
-.globe-shadow {
-    position: absolute;
-    bottom: -20px;
-    width: 60px;
-    height: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    filter: blur(5px);
-    animation: shadowScale 4s ease-in-out infinite;
-}
-
-.nex-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 40px;
-    font-weight: 900;
-    letter-spacing: 5px;
-    color: #fff;
-    margin-bottom: 5px;
-    text-shadow: 0 0 20px rgba(42, 157, 244, 0.5);
-}
-
-.nex-subtitle {
-    color: #7f91a4;
-    font-size: 14px;
-    margin-bottom: 50px;
-    letter-spacing: 1px;
-}
-
-.start-btn {
-    background: linear-gradient(135deg, #2a9df4, #0056b3);
-    color: white; border: none; padding: 15px 60px;
-    border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(42, 157, 244, 0.4);
-}
-
-/* --- انیمیشن‌ها --- */
-@keyframes floatGlobe {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
-@keyframes shadowScale {
-    0% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(0.6); opacity: 0.2; }
-    100% { transform: scale(1); opacity: 0.5; }
-}
-
-@keyframes rotateNetwork {
-    0% { background-position: 0 0; }
-    100% { background-position: 30px 30px; }
-}
-
-@keyframes spinRing1 {
-    0% { transform: rotate(-20deg) translateX(0); }
-    50% { transform: rotate(-20deg) translateX(10px); }
-    100% { transform: rotate(-20deg) translateX(0); }
-}
-
-@keyframes spinRing2 {
-    0% { transform: rotate(20deg) translateY(0); }
-    50% { transform: rotate(20deg) translateY(10px); }
-    100% { transform: rotate(20deg) translateY(0); }
-}
+/* --- صفحه خوش‌آمدگویی --- */
+.welcome-screen { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0e1621; transition: opacity 0.6s ease; }
+.globe-container { position: relative; width: 120px; height: 120px; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; animation: floatGlobe 4s ease-in-out infinite; }
+.globe { position: relative; width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #2a9df4, #0056b3, #001f4d); box-shadow: 0 0 30px rgba(42, 157, 244, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.2); display: flex; justify-content: center; align-items: center; overflow: hidden; }
+.globe-inner { width: 100%; height: 100%; border-radius: 50%; background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 15px 15px; background-position: center; animation: rotateNetwork 20s linear infinite; }
+.globe-ring { position: absolute; border: 2px solid rgba(42, 157, 244, 0.4); border-radius: 50%; box-shadow: 0 0 10px rgba(42, 157, 244, 0.3); }
+.ring1 { width: 130px; height: 40px; transform: rotate(-20deg); animation: spinRing1 6s linear infinite; }
+.ring2 { width: 40px; height: 130px; transform: rotate(20deg); animation: spinRing2 8s linear infinite; }
+.globe-shadow { position: absolute; bottom: -20px; width: 60px; height: 10px; background: rgba(0, 0, 0, 0.5); border-radius: 50%; filter: blur(5px); animation: shadowScale 4s ease-in-out infinite; }
+.nex-title { font-family: 'Arial', sans-serif; font-size: 40px; font-weight: 900; letter-spacing: 5px; color: #fff; margin-bottom: 5px; text-shadow: 0 0 20px rgba(42, 157, 244, 0.5); }
+.nex-subtitle { color: #7f91a4; font-size: 14px; margin-bottom: 50px; letter-spacing: 1px; }
+.start-btn { background: linear-gradient(135deg, #2a9df4, #0056b3); color: white; border: none; padding: 15px 60px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(42, 157, 244, 0.4); }
+@keyframes floatGlobe { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+@keyframes shadowScale { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(0.6); opacity: 0.2; } 100% { transform: scale(1); opacity: 0.5; } }
+@keyframes rotateNetwork { 0% { background-position: 0 0; } 100% { background-position: 30px 30px; } }
+@keyframes spinRing1 { 0% { transform: rotate(-20deg) translateX(0); } 50% { transform: rotate(-20deg) translateX(10px); } 100% { transform: rotate(-20deg) translateX(0); } }
+@keyframes spinRing2 { 0% { transform: rotate(20deg) translateY(0); } 50% { transform: rotate(20deg) translateY(10px); } 100% { transform: rotate(20deg) translateY(0); } }
 
 /* --- اپلیکیشن اصلی --- */
 .app-container { display: none; height: 100%; flex-direction: column; }
-.app-header {
-    background-color: #17212b;
-    padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
-    z-index: 10;
-}
-.header-menu-btn, .header-search-btn { color: #7f91a4; font-size: 20px; cursor: pointer; }
-.header-logo { font-family: Arial, sans-serif; font-weight: bold; font-size: 20px; color: #fff; letter-spacing: 1px; }
-
+.app-header { background-color: #17212b; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 10; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.header-menu-btn, .header-search-btn { color: #7f91a4; font-size: 22px; cursor: pointer; }
+.header-logo { font-family: Arial, sans-serif; font-weight: bold; font-size: 22px; color: #fff; letter-spacing: 1px; }
 .tab-content { flex-grow: 1; overflow-y: auto; position: relative; padding-bottom: 90px; }
 .tab-pane { display: none; height: 100%; flex-direction: column; }
 .tab-pane.active { display: flex; }
 
+/* کادر جستجو */
+.search-container { background-color: #17212b; padding: 10px 15px; display: flex; align-items: center; gap: 10px; }
+.search-input { flex-grow: 1; background-color: #242f3d; border: none; border-radius: 15px; padding: 10px 15px; color: #fff; font-size: 14px; outline: none; }
+.search-input::placeholder { color: #7f91a4; }
+.search-icon { display: none; }
+
+/* لیست چت‌ها */
 .chat-list { display: flex; flex-direction: column; }
-.chat-item {
-    display: flex; align-items: center; padding: 12px 20px;
-    cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-}
+.chat-item { display: flex; align-items: center; padding: 12px 20px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.03); transition: background 0.2s; }
 .chat-item:active { background-color: #17212b; }
-.chat-avatar {
-    width: 54px; height: 54px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 22px;
-    margin-left: 15px; color: white;
-}
+.chat-avatar { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-left: 15px; color: white; }
 .bg-blue { background: linear-gradient(135deg, #2a9df4, #0078ff); }
 .bg-red { background: linear-gradient(135deg, #ff5e5e, #d93838); }
-
+.bg-green { background: linear-gradient(135deg, #4caf50, #2e7d32); }
 .chat-info { flex-grow: 1; }
 .chat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-.chat-top h4 { font-size: 16px; font-weight: 600; color: #fff; }
+.chat-top h4 { font-size: 16px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 5px; }
 .chat-time { font-size: 12px; color: #7f91a4; }
-.chat-info p { font-size: 14px; color: #7f91a4; }
+.chat-info p { font-size: 14px; color: #7f91a4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
 
-.chat-room {
-    position: absolute; inset: 0; z-index: 20; display: none;
-    flex-direction: column; background-color: #0e1621; 
-    background-image: url('https://web.telegram.org/img/bg_0.png'); 
-    background-size: cover; background-blend-mode: overlay;
-}
-.chat-room-header {
-    background-color: #17212b;
-    padding: 15px 20px; display: flex; align-items: center; gap: 15px;
-}
+/* محیط چت */
+.chat-room { position: absolute; inset: 0; z-index: 20; display: none; flex-direction: column; background-color: #0e1621; background-image: url('https://web.telegram.org/img/bg_0.png'); background-size: cover; background-blend-mode: overlay; }
+.chat-room-header { background-color: #17212b; padding: 15px 20px; display: flex; align-items: center; gap: 15px; }
 .back-btn { background: none; border: none; color: #2a9df4; font-size: 20px; cursor: pointer; }
-
 .chat-messages { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
 .message { max-width: 75%; padding: 8px 15px; border-radius: 12px; font-size: 14px; line-height: 1.5; position: relative; }
 .msg-received { background-color: #182533; align-self: flex-start; border-top-right-radius: 4px; color: #fff; }
 .msg-sent { background-color: #2b5278; align-self: flex-end; border-top-left-radius: 4px; color: #fff; }
-
 .chat-input-area { padding: 10px 15px; background-color: #0e1621; }
-.chat-input-container {
-    display: flex; align-items: center; background-color: #17212b;
-    border-radius: 20px; padding: 8px 15px;
-}
+.chat-input-container { display: flex; align-items: center; background-color: #17212b; border-radius: 20px; padding: 8px 15px; }
 .message-input { flex-grow: 1; background: transparent; border: none; color: white; outline: none; font-size: 15px; padding: 0 10px; }
 .icon-btn { background: transparent; border: none; color: #7f91a4; font-size: 22px; cursor: pointer; padding: 5px; }
 .send-btn { display: none; color: #2a9df4; border: none; background: transparent; font-size: 22px; cursor: pointer; }
 
-.profile-content { height: 100%; overflow-y: auto; }
-.profile-card {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 30px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    background-color: #17212b;
-}
-.profile-avatar {
-    width: 90px; height: 90px; border-radius: 50%; background: #2a9df4;
-    display: flex; align-items: center; justify-content: center; font-size: 40px;
-    margin-bottom: 15px; 
-}
-.profile-name-input {
-    background: transparent; border: none; color: white; font-size: 20px; font-weight: bold;
-    text-align: center; margin-bottom: 5px; outline: none; width: 100%; max-width: 250px;
-}
-.profile-phone { font-size: 13px; color: #7f91a4; }
+/* پروفایل شبیه بله */
+#tab-profile { background-color: #0e1621; height: 100%; overflow-y: auto; }
+.profile-header-bale { display: flex; flex-direction: column; align-items: center; padding: 30px 20px 20px; background-color: #17212b; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.profile-avatar-bale { width: 90px; height: 90px; border-radius: 50%; background: #2a9df4; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white; position: relative; margin-bottom: 15px; }
+.edit-icon { position: absolute; bottom: 0; right: 0; background: #17212b; color: #7f91a4; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; border: 2px solid #17212b; }
+.profile-name-bale { font-size: 18px; color: #fff; display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+.verified-badge { color: #2a9df4; font-size: 16px; }
+.profile-id-bale { font-size: 13px; color: #7f91a4; }
+.settings-list-bale { display: flex; flex-direction: column; background-color: #0e1621; margin-top: 10px; }
+.setting-item-bale { display: flex; align-items: center; padding: 18px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.03); cursor: pointer; transition: background 0.2s; }
+.setting-item-bale:active { background-color: #17212b; }
+.setting-icon-bale { color: #7f91a4; font-size: 20px; margin-left: 15px; width: 25px; text-align: center; }
+.setting-item-bale span { font-size: 15px; color: #eee; }
+.app-version-bale { text-align: center; padding: 30px 0; font-size: 12px; color: #7f91a4; display: flex; justify-content: center; align-items: center; gap: 5px; }
 
-.settings-list { display: flex; flex-direction: column; background-color: #0e1621; }
-.setting-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 20px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-}
-.setting-item:active { background-color: #17212b; }
-.setting-right { display: flex; align-items: center; gap: 15px; }
-.setting-icon {
-    width: 38px; height: 38px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; font-size: 16px; color: white;
-}
-.bg-green { background: #4caf50; }
-.bg-orange { background: #ff9800; }
-.setting-text span { font-size: 15px; color: #eee; }
-.setting-arrow { color: #7f91a4; font-size: 14px; }
-
-.bottom-nav {
-    position: absolute; bottom: 15px; left: 15px; right: 15px; height: 65px;
-    background: rgba(23, 33, 43, 0.85); 
-    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-    display: flex; justify-content: space-around; align-items: center;
-    border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 15;
-}
-.nav-item {
-    display: flex; flex-direction: column; align-items: center; color: #7f91a4;
-    cursor: pointer; transition: 0.3s; font-size: 11px; gap: 5px;
-}
+/* منوی پایین شیشه‌ای */
+.bottom-nav { position: absolute; bottom: 15px; left: 15px; right: 15px; height: 65px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); z-index: 15; }
+.nav-item { display: flex; flex-direction: column; align-items: center; color: #7f91a4; cursor: pointer; transition: all 0.3s ease; font-size: 11px; gap: 4px; padding: 8px 20px; border-radius: 15px; }
+.nav-item.active { background: rgba(42, 157, 244, 0.15); color: #2a9df4; }
 .nav-item i { font-size: 22px; }
-.nav-item.active { color: #2a9df4; }
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
