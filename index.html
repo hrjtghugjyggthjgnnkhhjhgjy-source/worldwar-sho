@@ -5,180 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>چت مدرن</title>
     <style>
-        /* تنظیمات کلی صفحه */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Tahoma, 'Segoe UI', sans-serif;
-        }
-
+        /* تنظیمات کلی */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, 'Segoe UI', sans-serif; }
         body {
-            /* یک پس‌زمینه تیره با تصویر برای اینکه افکت شیشه‌ای دیده بشه */
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
                         url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: white;
-            overflow: hidden;
+            height: 100vh; display: flex; flex-direction: column; color: white; overflow: hidden;
         }
 
-        /* هدر بالای صفحه */
+        /* هدر */
         .chat-header {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 10;
+            background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(10px);
+            padding: 15px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .chat-header h2 {
-            font-size: 16px;
-            font-weight: normal;
-        }
-
-        /* بخش نمایش پیام‌ها */
+        /* بخش پیام‌ها */
         .chat-messages {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            flex-grow: 1; padding: 20px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 15px;
         }
 
-        /* استایل پیام‌ها */
         .message {
-            max-width: 70%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            line-height: 1.5;
-            backdrop-filter: blur(5px);
+            max-width: 75%; padding: 10px 15px; border-radius: 15px;
+            font-size: 14px; line-height: 1.5; backdrop-filter: blur(5px);
+            word-wrap: break-word; animation: fadeIn 0.3s ease;
         }
+        .msg-received { background: rgba(50, 50, 50, 0.8); align-self: flex-start; border-bottom-right-radius: 2px; }
+        .msg-sent { background: rgba(0, 120, 255, 0.8); align-self: flex-end; border-bottom-left-radius: 2px; }
 
-        .msg-received {
-            background: rgba(50, 50, 50, 0.7);
-            align-self: flex-start;
-            border-bottom-right-radius: 2px;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .msg-sent {
-            background: rgba(0, 120, 255, 0.7); /* رنگ آبی برای پیام‌های خودت */
-            align-self: flex-end;
-            border-bottom-left-radius: 2px;
-        }
-
-        /* کادر تایپ شیشه‌ای (دقیقاً مثل روبیکا) */
+        /* کادر تایپ */
         .chat-input-area {
-            padding: 15px;
-            background: rgba(20, 20, 20, 0.4); /* پس‌زمینه نیمه‌شفاف برای کل پایین صفحه */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px; background: rgba(20, 20, 20, 0.4); backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: env(safe-area-inset-bottom, 15px);
         }
 
         .chat-input-container {
-            display: flex;
-            align-items: center;
-            background: rgba(40, 40, 40, 0.6); /* پس‌زمینه کادر تایپ */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 50px; /* شکل کپسولی */
-            padding: 8px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.15); /* حاشیه ظریف */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* سایه برای برجسته شدن */
+            display: flex; align-items: center; background: rgba(40, 40, 40, 0.6);
+            backdrop-filter: blur(10px); border-radius: 50px; padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* ورودی متن */
         .message-input {
-            flex-grow: 1;
-            background: transparent;
-            border: none;
-            color: white;
-            outline: none;
-            font-size: 14px;
-            padding: 0 10px;
+            flex-grow: 1; background: transparent; border: none; color: white;
+            outline: none; font-size: 15px; padding: 0 10px;
         }
+        .message-input::placeholder { color: #a0a0a0; }
 
-        .message-input::placeholder {
-            color: #a0a0a0;
-        }
-
-        /* دکمه‌ها و آیکون‌ها */
         .icon-btn {
-            background: transparent;
-            border: none;
-            color: #b0b0b0;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px;
-            transition: color 0.3s;
+            background: transparent; border: none; color: #b0b0b0; font-size: 20px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            padding: 5px; transition: color 0.3s;
         }
+        .icon-btn:hover { color: white; }
 
-        .icon-btn:hover {
-            color: white;
+        /* دکمه ارسال (فقط وقتی متن هست نشون داده میشه) */
+        .send-btn {
+            display: none; /* مخفی در حالت اولیه */
+            background: #0078ff; color: white; border: none; border-radius: 50%;
+            width: 35px; height: 35px; cursor: pointer; align-items: center; justify-content: center;
+            font-size: 18px; transition: 0.3s;
         }
-
-        /* دکمه اختصاصی GIF */
-        .gif-btn {
-            border: 1.5px solid #b0b0b0;
-            border-radius: 8px;
-            font-size: 11px;
-            padding: 2px 6px;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        
-        .gif-btn:hover {
-            border-color: white;
-            color: white;
-        }
-
-        /* تغییر رنگ اسکرول‌بار */
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
+        .send-btn:hover { background: #0056b3; }
     </style>
 </head>
 <body>
 
-    <!-- هدر چت -->
     <div class="chat-header">
         <h2>گفتگو با رفیق</h2>
     </div>
 
-    <!-- بخش پیام‌ها -->
-    <div class="chat-messages">
+    <div class="chat-messages" id="chatBox">
         <div class="message msg-received">سلام! این یک پیام تستی است.</div>
         <div class="message msg-sent">سلام به روی ماهت! ببین کادر تایپ پایین چقدر شیک شده.</div>
-        <div class="message msg-received">آره واقعاً شبیه روبیکا شد! افکت شیشه‌ایش عالیه.</div>
     </div>
 
-    <!-- کادر تایپ شیشه‌ای -->
     <div class="chat-input-area">
         <div class="chat-input-container">
-            <button class="icon-btn gif-btn">GIF</button>
+            <button class="icon-btn">GIF</button>
+            <!-- با زدن اینتر هم پیام ارسال میشه -->
+            <input type="text" id="messageInput" class="message-input" placeholder="پیام بنویسید..." autocomplete="off">
             
-            <input type="text" class="message-input" placeholder="پیام...">
-            
-            <!-- آیکون کلیپ (با ایموجی جایگزین شده) -->
-            <button class="icon-btn" title="پیوست">📎</button>
-            <!-- آیکون میکروفون -->
-            <button class="icon-btn" title="میکروفون">🎤</button>
+            <!-- میکروفون وقتی تایپ نمیکنی نشون داده میشه -->
+            <button class="icon-btn" id="micBtn">🎤</button>
+            <!-- دکمه ارسال وقتی تایپ میکنی ظاهر میشه -->
+            <button class="icon-btn send-btn" id="sendBtn">➤</button>
         </div>
     </div>
 
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const micBtn = document.getElementById('micBtn');
+
+        // اسکرول خودکار به پایین
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        scrollToBottom();
+
+        // تغییر ظاهر دکمه‌ها هنگام تایپ
+        messageInput.addEventListener('input', function() {
+            if (this.value.trim().length > 0) {
+                sendBtn.style.display = 'flex';
+                micBtn.style.display = 'none';
+            } else {
+                sendBtn.style.display = 'none';
+                micBtn.style.display = 'flex';
+            }
+        });
+
+        // تابع ارسال پیام
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (text === '') return;
+
+            // 1. ساخت حباب پیام جدید
+            const newMsg = document.createElement('div');
+            newMsg.classList.add('message', 'msg-sent');
+            newMsg.textContent = text;
+            chatBox.appendChild(newMsg);
+
+            // 2. پاک کردن فیلد تایپ
+            messageInput.value = '';
+            sendBtn.style.display = 'none';
+            micBtn.style.display = 'flex';
+            scrollToBottom();
+
+            // 3. شبیه‌سازی پاسخ خودکار رفیق (بعد از 1.5 ثانیه)
+            setTimeout(() => {
+                const replyMsg = document.createElement('div');
+                replyMsg.classList.add('message', 'msg-received');
+                replyMsg.textContent = "پیامت رسید! این یک پاسخ خودکار تستی است.";
+                chatBox.appendChild(replyMsg);
+                scrollToBottom();
+            }, 1500);
+        }
+
+        // ارسال با کلیک روی دکمه
+        sendBtn.addEventListener('click', sendMessage);
+
+        // ارسال با زدن دکمه Enter
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
