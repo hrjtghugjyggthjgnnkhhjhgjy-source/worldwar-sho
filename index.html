@@ -10,12 +10,23 @@
 </head>
 <body>
 
-    <!-- صفحه خوش‌آمدگویی -->
+    <!-- صفحه خوش‌آمدگویی (Splash Screen) -->
     <div class="welcome-screen" id="welcomeScreen">
-        <div class="welcome-logo">✈️</div>
-        <h1 style="font-family: Arial, sans-serif; font-weight: bold;">NEX</h1>
-        <p>ارتباط امن، سریع و مدرن.<br>برای شروع سفر خود کلیک کنید.</p>
-        <button class="start-btn" onclick="startApp()">ورود به NEX</button>
+        
+        <!-- لوگوی کره جهانی NEX -->
+        <div class="globe-container">
+            <div class="globe">
+                <div class="globe-inner"></div>
+                <div class="globe-ring ring1"></div>
+                <div class="globe-ring ring2"></div>
+            </div>
+            <div class="globe-shadow"></div>
+        </div>
+        
+        <h1 class="nex-title">NEX</h1>
+        <p class="nex-subtitle">آینده ارتباطات در دستان شما</p>
+        
+        <button class="start-btn" onclick="startApp()">ورود به برنامه</button>
     </div>
 
     <!-- اپلیکیشن اصلی -->
@@ -32,7 +43,6 @@
             <!-- تب چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="chat-list">
-                    <!-- آیتم چت -->
                     <div class="chat-item" onclick="openChat('رفیق')">
                         <div class="chat-avatar bg-blue">👤</div>
                         <div class="chat-info">
@@ -60,7 +70,6 @@
             <!-- تب پروفایل (تنظیمات) -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-content">
-                    
                     <div class="profile-card">
                         <div class="profile-avatar" id="profileAvatar">👤</div>
                         <input type="text" class="profile-name-input" id="profileNameInput" placeholder="نام خود را وارد کنید" value="کاربر نکس">
@@ -120,7 +129,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین شیشه‌ای (شبیه عکس تلگرام) -->
+        <!-- منوی پایین شیشه‌ای -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <i class="fas fa-comment-dots"></i>
