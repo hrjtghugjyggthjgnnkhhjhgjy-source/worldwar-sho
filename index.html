@@ -4,72 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="dark">
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- صفحه ورود (شبیه بله) -->
-    <div class="welcome-screen" id="welcomeScreen">
-        
-        <!-- مرحله ۱: انتخاب زبان -->
-        <div class="auth-step" id="stepLanguage">
-            <div class="auth-logo">
-                <div class="globe-bg"></div>
-                <div class="nex-n"><span>N</span></div>
-            </div>
-            <h2>NEX</h2>
-            <p class="auth-desc">پیام‌رسان امن و سریع شما</p>
-            
-            <div class="lang-options">
-                <label class="lang-item active">
-                    <input type="radio" name="lang" checked>
-                    <span>فارسی</span>
-                </label>
-                <label class="lang-item">
-                    <input type="radio" name="lang">
-                    <span>English</span>
-                </label>
-            </div>
-            <button class="auth-btn" onclick="goToPhoneStep()">ادامه</button>
-        </div>
-
-        <!-- مرحله ۲: وارد کردن شماره موبایل -->
-        <div class="auth-step" id="stepPhone" style="display: none;">
-            <h2 class="auth-title">شماره همراه</h2>
-            <p class="auth-desc">لطفا کد کشور و شماره همراه خود را وارد کنید.</p>
-            
-            <div class="phone-input-group">
-                <div class="country-selector">
-                    <img src="https://flagcdn.com/w40/ir.png" alt="Iran">
-                    <span>Iran</span>
-                    <span class="code">+98</span>
-                </div>
-                <input type="tel" id="phoneNumber" class="phone-input" placeholder="9123456789" maxlength="10">
-            </div>
-            
-            <button class="auth-btn" onclick="sendVerificationCode()">تایید و ادامه</button>
-        </div>
-
-        <!-- مرحله ۳: وارد کردن کد تایید -->
-        <div class="auth-step" id="stepCode" style="display: none;">
-            <h2 class="auth-title">کد تایید</h2>
-            <p class="auth-desc" id="codeDesc">کد ۵ رقمی ارسال شده به شماره خود را وارد کنید.</p>
-            
-            <div class="code-input-group">
-                <input type="text" id="verificationCode" class="code-input" placeholder="-----" maxlength="5">
-            </div>
-            
-            <button class="auth-btn" onclick="verifyCode()">ورود به NEX</button>
-            <button class="auth-text-btn" onclick="goBackToPhone()">تغییر شماره</button>
-        </div>
-
-    </div>
-
-    <!-- اپلیکیشن اصلی -->
-    <div class="app-container" id="appContainer" style="display: none;">
+    <!-- اپلیکیشن اصلی (بدون صفحه ورود) -->
+    <div class="app-container" id="appContainer" style="display: flex;">
         
         <!-- هدر آبی -->
         <div class="app-header">
@@ -85,7 +28,7 @@
         </div>
 
         <div class="tab-content">
-            <!-- تب چت‌ها -->
+            <!-- تب 1: چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="جستجوی گفتگوها">
@@ -108,7 +51,7 @@
                 </div>
             </div>
 
-            <!-- تب مخاطبین -->
+            <!-- تب 2: مخاطبین -->
             <div class="tab-pane" id="tab-contacts">
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="جستجوی مخاطبین">
@@ -136,7 +79,7 @@
                 </div>
             </div>
 
-            <!-- تب پروفایل -->
+            <!-- تب 3: پروفایل -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
@@ -144,27 +87,15 @@
                     <p class="profile-id">@NexUser | +98 912 *** ****</p>
                 </div>
                 <div class="settings-list">
-                    <div class="setting-item">
-                        <div class="setting-icon"><i class="far fa-user"></i></div>
-                        <span>حساب کاربری</span>
-                    </div>
-                    <div class="setting-item" onclick="openChat('پیام‌های ذخیره شده', 'saved')">
-                        <div class="setting-icon"><i class="fas fa-bookmark"></i></div>
-                        <span>پیام‌های ذخیره شده</span>
-                    </div>
-                    <div class="setting-item">
-                        <div class="setting-icon"><i class="fas fa-cog"></i></div>
-                        <span>تنظیمات</span>
-                    </div>
-                    <div class="setting-item" onclick="logout()">
-                        <div class="setting-icon" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
-                        <span style="color: #ff3b30;">خروج از حساب</span>
-                    </div>
+                    <div class="setting-item"><div class="setting-icon"><i class="far fa-user"></i></div><span>حساب کاربری</span></div>
+                    <div class="setting-item" onclick="openChat('پیام‌های ذخیره شده', 'saved')"><div class="setting-icon"><i class="fas fa-bookmark"></i></div><span>پیام‌های ذخیره شده</span></div>
+                    <div class="setting-item"><div class="setting-icon"><i class="fas fa-cog"></i></div><span>تنظیمات</span></div>
+                    <div class="setting-item" onclick="logout()"><div class="setting-icon" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div><span style="color: #ff3b30;">خروج از حساب</span></div>
                 </div>
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
 
-            <!-- تب خدمات -->
+            <!-- تب 4: خدمات -->
             <div class="tab-pane" id="tab-services">
                 <div class="services-header"><h3>خدمات پرکاربرد</h3></div>
                 <div class="services-grid">
@@ -178,6 +109,16 @@
                     <div class="service-item"><i class="fas fa-chart-line"></i><span>سرمایه‌گذاری</span></div>
                 </div>
             </div>
+
+            <!-- تب 5: هوش مصنوعی (جدید) -->
+            <div class="tab-pane" id="tab-ai">
+                <div class="ai-container">
+                    <div class="ai-icon"><i class="fas fa-sparkles"></i></div>
+                    <h3>دستیار هوشمند NEX</h3>
+                    <p>به زودی می‌تونید با هوش مصنوعی NEX چت کنید!</p>
+                    <button class="auth-btn" style="margin-top: 20px; width: auto; padding: 10px 30px;" onclick="alert('این بخش به زودی فعال می‌شود!')">به زودی...</button>
+                </div>
+            </div>
         </div>
 
         <!-- محیط چت -->
@@ -187,11 +128,7 @@
                 <h4 id="chatRoomTitle">چت</h4>
             </div>
             <div class="chat-messages" id="chatBox"></div>
-            
-            <div class="emoji-panel" id="emojiPanel">
-                <div class="emoji-grid"></div>
-            </div>
-
+            <div class="emoji-panel" id="emojiPanel"><div class="emoji-grid"></div></div>
             <div class="chat-input-area">
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
@@ -202,7 +139,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین (شیشه‌ای) -->
+        <!-- منوی پایین (۵ تب) -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span>
@@ -216,6 +153,9 @@
             <div class="nav-item" id="nav-services" onclick="switchTab('services')">
                 <div class="nav-icon-box"><i class="fas fa-th-large"></i></div><span>خدمات</span>
             </div>
+            <div class="nav-item" id="nav-ai" onclick="switchTab('ai')">
+                <div class="nav-icon-box"><i class="fas fa-sparkles"></i></div><span>هوش مصنوعی</span>
+            </div>
         </div>
     </div>
 
@@ -223,4 +163,4 @@
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+                        </html>
