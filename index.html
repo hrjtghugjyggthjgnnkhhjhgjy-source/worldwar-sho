@@ -28,14 +28,14 @@
     <!-- اپلیکیشن اصلی -->
     <div class="app-container" id="appContainer">
         
-        <!-- هدر شیشه‌ای -->
+        <!-- هدر -->
         <div class="app-header" id="mainHeader">
             <div class="header-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <h2 class="header-logo">NEX</h2>
             <div class="header-search-btn"><i class="fas fa-search"></i></div>
         </div>
 
-        <!-- منوی کشویی (شیشه‌ای) -->
+        <!-- منوی کشویی -->
         <div class="drawer-menu" id="drawerMenu">
             <div class="drawer-item" onclick="createNewChat('group')"><i class="fas fa-users"></i> ساخت گروه جدید</div>
             <div class="drawer-item" onclick="createNewChat('channel')"><i class="fas fa-bullhorn"></i> ساخت کانال جدید</div>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="chat-list" id="mainChatList">
-                    <!-- چت‌های پیش‌فرض -->
+                    <!-- فقط تیم NEX و پیام‌های ذخیره شده در ابتدا -->
                     <div class="chat-item" onclick="openChat('تیم NEX', 'nex')">
                         <div class="chat-avatar bg-blue"><i class="fas fa-check"></i></div>
                         <div class="chat-info">
@@ -63,13 +63,6 @@
                         <div class="chat-info">
                             <div class="chat-top"><h4>پیام‌های ذخیره شده</h4></div>
                             <p>اینجا فضای شخصی شماست.</p>
-                        </div>
-                    </div>
-                    <div class="chat-item" onclick="openChat('عرفان', 'normal')">
-                        <div class="chat-avatar bg-red">ع</div>
-                        <div class="chat-info">
-                            <div class="chat-top"><h4>عرفان</h4><span class="chat-time">دیروز</span></div>
-                            <p>سلام بچه‌ها...</p>
                         </div>
                     </div>
                 </div>
@@ -95,6 +88,7 @@
 
                 <div class="contacts-list-header"><span>مرتب شده بر اساس آخرین زمان بازدید</span></div>
                 <div class="contacts-list">
+                    <!-- مخاطبین برای چت کردن -->
                     <div class="contact-item" onclick="openChat('عرفان', 'normal')">
                         <div class="contact-avatar bg-red">ع</div>
                         <div class="contact-info"><h4>عرفان</h4><p>آخرین بازدید در 12:30</p></div>
@@ -113,16 +107,31 @@
                     <h3 class="profile-name-bale">کاربر نکس <i class="fas fa-check-circle verified-badge"></i></h3>
                     <p class="profile-id-bale">@NexUser | +98 912 *** ****</p>
                 </div>
+                
                 <div class="settings-list-bale">
-                    <div class="setting-item-bale"><div class="setting-icon-bale"><i class="far fa-user"></i></div><span>حساب کاربری</span></div>
-                    <div class="setting-item-bale"><div class="setting-icon-bale"><i class="fas fa-cog"></i></div><span>تنظیمات</span></div>
-                    <div class="setting-item-bale" onclick="logout()"><div class="setting-icon-bale" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div><span style="color: #ff3b30;">خروج از حساب</span></div>
+                    <div class="setting-item-bale">
+                        <div class="setting-icon-bale"><i class="far fa-user"></i></div>
+                        <span>حساب کاربری</span>
+                    </div>
+                    <!-- دکمه پیام‌های ذخیره شده در تنظیمات -->
+                    <div class="setting-item-bale" onclick="openChat('پیام‌های ذخیره شده', 'saved')">
+                        <div class="setting-icon-bale"><i class="fas fa-bookmark"></i></div>
+                        <span>پیام‌های ذخیره شده</span>
+                    </div>
+                    <div class="setting-item-bale">
+                        <div class="setting-icon-bale"><i class="fas fa-cog"></i></div>
+                        <span>تنظیمات</span>
+                    </div>
+                    <div class="setting-item-bale" onclick="logout()">
+                        <div class="setting-icon-bale" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
+                        <span style="color: #ff3b30;">خروج از حساب</span>
+                    </div>
                 </div>
                 <div class="app-version-bale"><span>NEX نسخه ۱.۰.۰</span><i class="fas fa-check-circle"></i></div>
             </div>
         </div>
 
-        <!-- محیط چت (Chat Room) -->
+        <!-- محیط چت -->
         <div class="chat-room" id="chatRoom">
             <div class="chat-room-header">
                 <button class="back-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
@@ -137,7 +146,7 @@
                 </div>
             </div>
 
-            <!-- کادر تایپ شیشه‌ای -->
+            <!-- کادر تایپ -->
             <div class="chat-input-area">
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
@@ -148,7 +157,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین (شیشه‌ای و ۴ تایی) -->
+        <!-- منوی پایین -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span>
@@ -164,4 +173,4 @@
 
     <script src="script.js"></script>
 </body>
-                                              </html>
+</html>
