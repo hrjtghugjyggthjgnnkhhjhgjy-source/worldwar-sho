@@ -30,9 +30,17 @@
         
         <!-- هدر -->
         <div class="app-header" id="mainHeader">
-            <div class="header-menu-btn"><i class="fas fa-bars"></i></div>
+            <!-- منوی همبرگری -->
+            <div class="header-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <h2 class="header-logo">NEX</h2>
             <div class="header-search-btn"><i class="fas fa-search"></i></div>
+        </div>
+
+        <!-- منوی کشویی (برای ساخت گروه/کانال/بات) -->
+        <div class="drawer-menu" id="drawerMenu">
+            <div class="drawer-item" onclick="alert('ساخت گروه به زودی...')"><i class="fas fa-users"></i> ساخت گروه جدید</div>
+            <div class="drawer-item" onclick="alert('ساخت کانال به زودی...')"><i class="fas fa-bullhorn"></i> ساخت کانال جدید</div>
+            <div class="drawer-item" onclick="promptNewBot()"><i class="fas fa-robot"></i> ساخت بات (BotFather)</div>
         </div>
 
         <div class="tab-content">
@@ -45,7 +53,7 @@
 
                 <!-- لیست چت‌ها -->
                 <div class="chat-list" id="mainChatList">
-                    <!-- چت تیم NEX (خودکار) -->
+                    <!-- چت تیم NEX -->
                     <div class="chat-item" onclick="openChat('تیم NEX', 'nex')">
                         <div class="chat-avatar bg-blue"><i class="fas fa-check"></i></div>
                         <div class="chat-info">
@@ -122,7 +130,7 @@
             </div>
             <div class="chat-messages" id="chatBox"></div>
             <div class="chat-input-area">
-                <div class="chat-input-container">
+                <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn"><i class="fas fa-smile"></i></button>
                     <input type="text" id="messageInput" class="message-input" placeholder="پیام..." autocomplete="off">
                     <button class="icon-btn" id="micBtn"><i class="fas fa-microphone"></i></button>
@@ -131,17 +139,27 @@
             </div>
         </div>
 
-        <!-- منوی پایین -->
+        <!-- منوی پایین شیشه‌ای -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
-                <i class="fas fa-comment-dots"></i><span>گفتگوها</span>
+                <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div>
+                <span>گفتگوها</span>
+            </div>
+            <div class="nav-item" id="nav-contacts">
+                <div class="nav-icon-box"><i class="fas fa-user-friends"></i></div>
+                <span>مخاطبین</span>
+            </div>
+            <div class="nav-item" id="nav-settings">
+                <div class="nav-icon-box"><i class="fas fa-cog"></i></div>
+                <span>تنظیمات</span>
             </div>
             <div class="nav-item" id="nav-profile" onclick="switchTab('profile')">
-                <i class="fas fa-user-circle"></i><span>پروفایل</span>
+                <div class="nav-icon-box"><i class="fas fa-user-circle"></i></div>
+                <span>پروفایل</span>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html>
+                        </html>
