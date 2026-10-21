@@ -1,4 +1,3 @@
-// --- 1. مدیریت صفحه خوش‌آمدگویی ---
 const welcomeScreen = document.getElementById('welcomeScreen');
 const appContainer = document.getElementById('appContainer');
 
@@ -16,7 +15,6 @@ if (localStorage.getItem('nexUser')) {
     appContainer.style.display = 'flex';
 }
 
-// --- 2. مدیریت تب‌ها ---
 function switchTab(tabName) {
     document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
@@ -26,7 +24,6 @@ function switchTab(tabName) {
     closeChat();
 }
 
-// --- 3. مدیریت محیط چت ---
 const chatRoom = document.getElementById('chatRoom');
 const chatBox = document.getElementById('chatBox');
 const messageInput = document.getElementById('messageInput');
@@ -65,7 +62,6 @@ function sendMessage() {
     sendBtn.style.display = 'none';
     micBtn.style.display = 'flex';
     
-    // پاسخ خودکار
     setTimeout(() => {
         const replyMsg = document.createElement('div');
         replyMsg.classList.add('message', 'msg-received');
@@ -80,13 +76,10 @@ messageInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') sendMessage();
 });
 
-// --- 4. مدیریت پروفایل ---
 const profileNameInput = document.getElementById('profileNameInput');
-
 if (localStorage.getItem('nexUserName')) {
     profileNameInput.value = localStorage.getItem('nexUserName');
 }
-
 profileNameInput.addEventListener('input', function() {
     localStorage.setItem('nexUserName', this.value);
 });
