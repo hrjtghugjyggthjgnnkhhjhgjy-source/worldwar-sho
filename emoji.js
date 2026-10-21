@@ -1,34 +1,60 @@
-// --- فایل اختصاصی مدیریت ایموجی‌ها (شبیه تلگرام) ---
-
-// دیتابیس ایموجی‌ها به تفکیک دسته‌بندی
+// --- دیتابیس کامل ایموجی‌ها (شبیه تلگرام) ---
 const emojiCategories = {
-    smileys: ['😀', '😂', '❤️', '👍', '🔥', '😍', '🙏', '💔', '😎', '😢', '🎉', '👏', '✨', '💯', '😡', '😱', '🤔', '😴', '🤝', '💪', '👀', '🤯', '🥶', '🤩'],
-    animals: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔', '🐧', '🐦', '🐤', '🦆', '🦅', '🦉', '🦇', '🐺'],
-    food: ['🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒', '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🥬', '🥒', '🌶', '🌽'],
-    sports: ['⚽', '🏀', '🏈', '⚾', '🥎', '🎾', '🏐', '🏉', '🥏', '🎱', '🪀', '🏓', '🏸', '🏒', '🏑', '🥍', '🏏', '🪃', '🥅', '⛳', '🪁', '🏹', '🎣', '🤿'],
-    symbols: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️', '✝️', '☪️', '🕉', '☸️'],
-    objects: ['📱', '💻', '⌨️', '🖥', '🖨', '🖱', '🖲', '🕹', '🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥', '📽', '🎞', '📞', '☎️', '📟', '📠']
+    smileys: [
+        '😀','😃','😄','😁','😆','😅','😂','🤣','🥲','☺️','😊','😇','🙂','🙃','😉','😌','😍','🥰','😘','😗',
+        '😙','😚','😋','😛','😝','😜','🤪','🤨','🧐','🤓','😎','🥸','🤩','🥳','😏','😒','😞','😔','😟','😕',
+        '🙁','☹️','😣','😖','😫','😩','🥺','😢','😭','😤','😠','😡','🤬','🤯','😳','🥵','🥶','😱','😨','😰',
+        '😥','😓','🤗','🤔','🫣','🤭','🫢','🫡','🤫','🤥','😶','🫥','😐','🫤','😑','😬','🙄','😯','😦','😧'
+    ],
+    animals: [
+        '🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐻‍❄️','🐨','🐯','🦁','🐮','🐷','🐽','🐸','🐵','🙈','🙉','🙊',
+        '🐒','🐔','🐧','🐦','🐤','🐣','🐥','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🪱','🐛','🦋','🐌',
+        '🐞','🐜','🪰','🪱','🦗','🕷','🕸','🦂','🐢','🐍','🦎','🦖','🦕','🐙','🦑','🦐','🦞','🦀','🐡','🐠'
+    ],
+    food: [
+        '🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍈','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑',
+        '🥦','🥬','🥒','🌶','🫑','🌽','🥕','🫒','🧄','🧅','🥔','🍠','🥐','🥯','🍞','🥖','🥨','🧀','🥚','🍳',
+        '🧈','🥞','🧇','🥓','🥩','🍗','🍖','🦴','🌭','🍔','🍟','🍕','🫓','🥪','🥙','🧆','🌮','🌯','🫔','🥗'
+    ],
+    sports: [
+        '⚽','🏀','🏈','⚾','🥎','🎾','🏐','🏉','🥏','🎱','🪀','🏓','🏸','🏒','🏑','🥍','🏏','🪃','🥅','⛳',
+        '🪁','🏹','🎣','🤿','🥊','🥋','🎽','🛹','🛼','🛷','⛸','🥌','🎿','⛷','🏂','🪂','🏋️','🤼','🤸','⛹️',
+        '🤺','🤾','🏌️','🏇','🧘','🏄','🏊','🤽','🚣','🧗','🚵','🚴','🏆','🥇','🥈','🥉','🏅','🎖','🏵','🎗'
+    ],
+    objects: [
+        '⌚','📱','📲','💻','⌨️','🖥','🖨','🖱','🖲','🕹','🗜','💽','💾','💿','📀','📼','📷','📸','📹','🎥',
+        '📽','🎞','📞','☎️','📟','📠','📺','📻','🎙','🎚','🎛','🧭','⏱','⏲','⏰','🕰','⌛','⏳','📡','🔋',
+        '🪫','🔌','💡','🔦','🕯','🪔','🧯','🛢','💸','💵','💴','💶','💷','🪙','💰','💳','💎','⚖️','🪜','🧰'
+    ],
+    symbols: [
+        '❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','💟','☮️',
+        '✝️','☪️','🕉','☸️','✡️','🔯','🕎','☯️','☦️','🛐','⛎','♈','♉','♊','♋','♌','♍','♎','♏','♐',
+        '♑','♒','♓','🆔','⚛️','🉑','☢️','☣️','📴','📳','🈶','🈚','🈸','🈺','🈷️','✴️','🆚','💮','🉐','㊙️'
+    ],
+    flags: [
+        '🏁','🚩','🎌','🏴','🏳️','🏳️‍🌈','🏳️‍⚧️','🏴‍☠️','🇮🇷','🇺🇸','🇬🇧','🇫🇷','🇩🇪','🇯🇵','🇨🇳','🇷🇺','🇮🇳','🇸🇦','🇹🇷','🇦🇪',
+        '🇨🇦','🇦🇺','🇧🇷','🇮🇹','🇪🇸','🇰🇷','🇲🇽','🇳🇱','🇨🇭','🇸🇪','🇳🇴','🇩🇰','🇫🇮','🇧🇪','🇦🇹','🇵🇹','🇬🇷','🇮🇪','🇳🇿','🇿🇦'
+    ]
 };
 
-let currentCategory = 'smileys'; // دسته پیش‌فرض
+let currentCategory = 'smileys';
 
-// ۱. ساخت نوار دسته‌بندی (بالای پنل)
+// ۱. ساخت نوار دسته‌بندی
 function initEmojiTabs() {
     const emojiPanel = document.getElementById('emojiPanel');
     if (!emojiPanel) return;
 
-    // ساخت کانتینر تب‌ها
     const tabsContainer = document.createElement('div');
     tabsContainer.className = 'emoji-tabs';
     
-    // ساخت آیکون‌های تب
     const tabs = [
         { id: 'smileys', icon: 'fa-smile' },
         { id: 'animals', icon: 'fa-paw' },
         { id: 'food', icon: 'fa-utensils' },
         { id: 'sports', icon: 'fa-futbol' },
+        { id: 'objects', icon: 'fa-mobile-alt' },
         { id: 'symbols', icon: 'fa-heart' },
-        { id: 'objects', icon: 'fa-mobile-alt' }
+        { id: 'flags', icon: 'fa-flag' }
     ];
 
     tabs.forEach(tab => {
@@ -39,7 +65,6 @@ function initEmojiTabs() {
         tabsContainer.appendChild(btn);
     });
 
-    // اضافه کردن تب‌ها به بالای پنل ایموجی
     emojiPanel.prepend(tabsContainer);
 }
 
@@ -47,8 +72,7 @@ function initEmojiTabs() {
 function renderEmojis(category) {
     const emojiGrid = document.querySelector('.emoji-grid');
     if (!emojiGrid) return;
-
-    emojiGrid.innerHTML = ''; // پاک کردن قبلی‌ها
+    emojiGrid.innerHTML = ''; 
 
     emojiCategories[category].forEach(emoji => {
         const span = document.createElement('span');
@@ -58,26 +82,21 @@ function renderEmojis(category) {
     });
 }
 
-// ۳. تغییر دسته‌بندی با کلیک روی تب‌ها
+// ۳. تغییر دسته‌بندی
 function switchCategory(category) {
     currentCategory = category;
     renderEmojis(category);
 
-    // آپدیت کردن ظاهر تب‌ها (فعال/غیرفعال)
     const tabsContainer = document.querySelector('.emoji-tabs');
     if (tabsContainer) {
         Array.from(tabsContainer.children).forEach((btn, index) => {
-            const tabIds = ['smileys', 'animals', 'food', 'sports', 'symbols', 'objects'];
-            if (tabIds[index] === category) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
+            const tabIds = ['smileys', 'animals', 'food', 'sports', 'objects', 'symbols', 'flags'];
+            btn.classList.toggle('active', tabIds[index] === category);
         });
     }
 }
 
-// ۴. اضافه کردن ایموجی به کادر تایپ
+// ۴. اضافه کردن به کادر تایپ
 function addEmojiToInput(emoji) {
     const messageInput = document.getElementById('messageInput');
     const sendBtn = document.getElementById('sendBtn');
@@ -86,7 +105,6 @@ function addEmojiToInput(emoji) {
     if (messageInput) {
         messageInput.value += emoji;
         messageInput.focus();
-        
         if (sendBtn && micBtn) {
             sendBtn.style.display = 'flex';
             micBtn.style.display = 'none';
@@ -98,7 +116,6 @@ function addEmojiToInput(emoji) {
 function toggleEmojiPanel() {
     const emojiPanel = document.getElementById('emojiPanel');
     const messageInput = document.getElementById('messageInput');
-    
     if (emojiPanel) {
         emojiPanel.classList.toggle('show');
         if (emojiPanel.classList.contains('show') && messageInput) {
@@ -107,8 +124,8 @@ function toggleEmojiPanel() {
     }
 }
 
-// --- راه‌اندازی اولیه ---
+// راه‌اندازی
 document.addEventListener('DOMContentLoaded', () => {
-    initEmojiTabs();       // ساخت تب‌ها
-    renderEmojis('smileys'); // نمایش ایموجی‌های دسته اول
+    initEmojiTabs(); 
+    renderEmojis('smileys');
 });
