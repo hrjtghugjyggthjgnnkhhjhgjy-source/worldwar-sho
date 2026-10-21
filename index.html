@@ -4,32 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
-    <meta name="color-scheme" content="dark">
+    <meta name="color-scheme" content="light">
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- صفحه ورود -->
+    <!-- صفحه ورود (شبیه بله) -->
     <div class="welcome-screen" id="welcomeScreen">
-        <div class="logo-container">
-            <div class="globe-bg"></div>
-            <div class="nex-n"><span>N</span></div>
-            <div class="globe-rings">
-                <div class="ring ring1"></div>
-                <div class="ring ring2"></div>
+        
+        <!-- مرحله ۱: انتخاب زبان -->
+        <div class="auth-step" id="stepLanguage">
+            <div class="auth-logo">
+                <div class="globe-bg"></div>
+                <div class="nex-n"><span>N</span></div>
             </div>
+            <h2>NEX</h2>
+            <p class="auth-desc">پیام‌رسان امن و سریع شما</p>
+            
+            <div class="lang-options">
+                <label class="lang-item active">
+                    <input type="radio" name="lang" checked>
+                    <span>فارسی</span>
+                </label>
+                <label class="lang-item">
+                    <input type="radio" name="lang">
+                    <span>English</span>
+                </label>
+            </div>
+            <button class="auth-btn" onclick="goToPhoneStep()">ادامه</button>
         </div>
-        
-        <h1 class="nex-title">NEX</h1>
-        
-        <!-- دکمه ورود -->
-        <button class="start-btn" onclick="startApp()">ورود به برنامه</button>
+
+        <!-- مرحله ۲: وارد کردن شماره موبایل -->
+        <div class="auth-step" id="stepPhone" style="display: none;">
+            <h2 class="auth-title">شماره همراه</h2>
+            <p class="auth-desc">لطفا کد کشور و شماره همراه خود را وارد کنید.</p>
+            
+            <div class="phone-input-group">
+                <div class="country-selector">
+                    <img src="https://flagcdn.com/w40/ir.png" alt="Iran">
+                    <span>Iran</span>
+                    <span class="code">+98</span>
+                </div>
+                <input type="tel" id="phoneNumber" class="phone-input" placeholder="9123456789" maxlength="10">
+            </div>
+            
+            <button class="auth-btn" onclick="sendVerificationCode()">تایید و ادامه</button>
+        </div>
+
+        <!-- مرحله ۳: وارد کردن کد تایید -->
+        <div class="auth-step" id="stepCode" style="display: none;">
+            <h2 class="auth-title">کد تایید</h2>
+            <p class="auth-desc" id="codeDesc">کد ۵ رقمی ارسال شده به شماره خود را وارد کنید.</p>
+            
+            <div class="code-input-group">
+                <input type="text" id="verificationCode" class="code-input" placeholder="-----" maxlength="5">
+            </div>
+            
+            <button class="auth-btn" onclick="verifyCode()">ورود به NEX</button>
+            <button class="auth-text-btn" onclick="goBackToPhone()">تغییر شماره</button>
+        </div>
+
     </div>
 
     <!-- اپلیکیشن اصلی -->
-    <div class="app-container" id="appContainer">
+    <div class="app-container" id="appContainer" style="display: none;">
         
         <!-- هدر آبی -->
         <div class="app-header">
@@ -148,7 +188,6 @@
             </div>
             <div class="chat-messages" id="chatBox"></div>
             
-            <!-- پنل ایموجی -->
             <div class="emoji-panel" id="emojiPanel">
                 <div class="emoji-grid"></div>
             </div>
@@ -163,7 +202,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین (شیشه‌ای خالص) -->
+        <!-- منوی پایین (شیشه‌ای) -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span>
