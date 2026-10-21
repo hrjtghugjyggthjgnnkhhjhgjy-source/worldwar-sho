@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
     <meta name="color-scheme" content="dark">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- صفحه خوش‌آمدگویی -->
+    <!-- 1. صفحه خوش‌آمدگویی -->
     <div class="welcome-screen" id="welcomeScreen">
         <div class="logo-container">
             <div class="globe-bg"></div>
@@ -26,7 +25,7 @@
         <button class="start-btn" onclick="startApp()">ورود به برنامه</button>
     </div>
 
-    <!-- اپلیکیشن اصلی -->
+    <!-- 2. اپلیکیشن اصلی -->
     <div class="app-container" id="appContainer">
         
         <!-- هدر -->
@@ -42,14 +41,15 @@
             <div class="drawer-item" onclick="createNewChat('channel')"><i class="fas fa-bullhorn"></i> ساخت کانال جدید</div>
         </div>
 
+        <!-- محتوای تب‌ها -->
         <div class="tab-content">
-            <!-- 1. تب چت‌ها -->
+            
+            <!-- تب 1: چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
                     <input type="text" class="search-input" placeholder="جستجوی گفتگوها">
                 </div>
-
                 <div class="chat-list" id="mainChatList">
                     <div class="chat-item" onclick="openChat('تیم NEX', 'nex')">
                         <div class="chat-avatar bg-blue"><i class="fas fa-check"></i></div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <!-- 2. تب مخاطبین -->
+            <!-- تب 2: مخاطبین -->
             <div class="tab-pane" id="tab-contacts">
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
@@ -97,42 +97,40 @@
                 </div>
             </div>
 
-            <!-- 3. تب پروفایل (کاملا جدا و تمیز) -->
+            <!-- تب 3: پروفایل (تمیز و بدون آیکون اضافی) -->
             <div class="tab-pane" id="tab-profile">
-                <div class="profile-header-bale">
-                    <div class="profile-avatar-bale"><i class="fas fa-user"></i></div>
-                    <h3 class="profile-name-bale">کاربر نکس</h3>
-                    <p class="profile-id-bale">@NexUser | +98 912 *** ****</p>
+                <div class="profile-header">
+                    <div class="profile-avatar"><i class="fas fa-user"></i></div>
+                    <h3 class="profile-name">کاربر نکس</h3>
+                    <p class="profile-id">@NexUser | +98 912 *** ****</p>
                 </div>
                 
-                <div class="settings-list-bale">
-                    <div class="setting-item-bale">
-                        <div class="setting-icon-bale"><i class="far fa-user"></i></div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="far fa-user"></i></div>
                         <span>حساب کاربری</span>
                     </div>
-                    <div class="setting-item-bale" onclick="openChat('پیام‌های ذخیره شده', 'saved')">
-                        <div class="setting-icon-bale"><i class="fas fa-bookmark"></i></div>
+                    <div class="setting-item" onclick="openChat('پیام‌های ذخیره شده', 'saved')">
+                        <div class="setting-icon"><i class="fas fa-bookmark"></i></div>
                         <span>پیام‌های ذخیره شده</span>
                     </div>
-                    <div class="setting-item-bale">
-                        <div class="setting-icon-bale"><i class="fas fa-cog"></i></div>
+                    <div class="setting-item">
+                        <div class="setting-icon"><i class="fas fa-cog"></i></div>
                         <span>تنظیمات</span>
                     </div>
-                    <div class="setting-item-bale" onclick="logout()">
-                        <div class="setting-icon-bale" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
+                    <div class="setting-item" onclick="logout()">
+                        <div class="setting-icon" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div>
                         <span style="color: #ff3b30;">خروج از حساب</span>
                     </div>
                 </div>
-                <div class="app-version-bale"><span>NEX نسخه ۱.۰.۰</span></div>
+                <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
 
-            <!-- 4. تب خدمات (کاملا جدا و تمیز) -->
+            <!-- تب 4: خدمات (کاملا درست و جدا) -->
             <div class="tab-pane" id="tab-services">
                 <div class="services-header">
                     <h3>خدمات پرکاربرد</h3>
-                    <span>همه خدمات <i class="fas fa-chevron-left"></i></span>
                 </div>
-                
                 <div class="services-grid">
                     <div class="service-item"><i class="fas fa-wifi"></i><span>بسته اینترنت</span></div>
                     <div class="service-item"><i class="fas fa-battery-full"></i><span>شارژ</span></div>
@@ -142,16 +140,6 @@
                     <div class="service-item"><i class="fas fa-tint"></i><span>کیف انرژی</span></div>
                     <div class="service-item"><i class="fas fa-car"></i><span>خدمات خودرو</span></div>
                     <div class="service-item"><i class="fas fa-chart-line"></i><span>سرمایه‌گذاری</span></div>
-                </div>
-
-                <div class="services-header" style="margin-top: 20px;">
-                    <h3>پیشنهادهای NEX</h3>
-                </div>
-                <div class="services-grid">
-                    <div class="service-item"><i class="fas fa-box"></i><span>رهگیری مرسوله</span></div>
-                    <div class="service-item"><i class="fas fa-graduation-cap"></i><span>گواهی اشتغال</span></div>
-                    <div class="service-item"><i class="fas fa-pills"></i><span>استعلام دارو</span></div>
-                    <div class="service-item"><i class="fas fa-calendar-alt"></i><span>برنامه خاموشی</span></div>
                 </div>
             </div>
         </div>
@@ -180,7 +168,7 @@
             </div>
         </div>
 
-        <!-- منوی پایین (۴ تب) -->
+        <!-- منوی پایین -->
         <div class="bottom-nav">
             <div class="nav-item active" id="nav-chats" onclick="switchTab('chats')">
                 <div class="nav-icon-box"><i class="fas fa-comment-dots"></i></div><span>گفتگوها</span>
