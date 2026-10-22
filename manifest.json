@@ -7,9 +7,9 @@
   "theme_color": "#0078ff",
   "icons": [
     {
-      "src": "icon.png.png",
+      "src": "https://tapi.bale.ai/file/bot1622610314:cRhQRTSeZNYDHjRJSlsXpfEMPYLVxIGXvGM/522059458:7750461077658541826:1:d71a0507c98b48f3bbdd2596511930d128d2bad5716ddab4",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg"
     }
   ]
 }
