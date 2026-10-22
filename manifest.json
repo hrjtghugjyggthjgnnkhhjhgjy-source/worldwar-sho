@@ -1,1 +1,15 @@
-
+{
+  "name": "NEX",
+  "short_name": "NEX",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b141a",
+  "theme_color": "#0078ff",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
