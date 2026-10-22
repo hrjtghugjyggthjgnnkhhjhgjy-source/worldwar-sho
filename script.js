@@ -10,21 +10,20 @@ function switchTab(tabName) {
         targetTab.classList.add('active');
         targetNav.classList.add('active');
     }
+
+    // *** هوشمندسازی هدر: نمایش NEX فقط در تب چت‌ها ***
+    const headerTitle = document.getElementById('mainHeaderTitle');
+    if (headerTitle) {
+        if (tabName === 'chats') {
+            headerTitle.style.visibility = 'visible'; 
+        } else {
+            headerTitle.style.visibility = 'hidden'; 
+        }
+    }
+
     const drawer = document.getElementById('drawerMenu');
     if (drawer) drawer.classList.remove('show');
 }
-
-function toggleMenu() {
-    document.getElementById('drawerMenu').classList.toggle('show');
-}
-
-document.addEventListener('click', function(event) {
-    const menu = document.getElementById('drawerMenu');
-    const menuBtn = document.querySelector('.header-menu-btn');
-    if (menu && menuBtn && !menu.contains(event.target) && !menuBtn.contains(event.target)) {
-        menu.classList.remove('show');
-    }
-});
 
 // --- 2. ساخت گروه جدید ---
 function createNewChat(type) {
@@ -37,7 +36,6 @@ function createNewChat(type) {
     document.getElementById('groupLinkInput').value = '';
     document.querySelectorAll('.member-checkbox').forEach(cb => cb.checked = false);
     selectGroupType('public');
-    toggleMenu();
 }
 
 function closeCreateGroupModal() {
@@ -91,9 +89,9 @@ function submitCreateGroup() {
     const newChat = document.createElement('div');
     newChat.className = 'chat-item';
     
-    // وقتی روی گروه کلیک میکنیم، چت باز میشه و اطلاعات گروه لود میشه
     newChat.onclick = () => {
         openChat(name, 'group'); 
+        loadGroupInfo(name); 
     };
     
     newChat.innerHTML = `
@@ -124,15 +122,11 @@ function openChat(name, type) {
     chatRoom.style.display = 'flex';
     chatBox.innerHTML = ''; 
 
-    // *** مخفی کردن کادر تایپ برای تیم NEX ***
     if (type === 'nex') {
         if (chatInputArea) chatInputArea.style.display = 'none'; 
         chatBox.innerHTML = `<div class="message msg-received" style="background: #0078ff; color: white;">سلام! به پیام‌رسان <b>NEX</b> خوش آمدید. 🎉<br>این یک پیام سیستم است و امکان ارسال پیام وجود ندارد.</div>`;
-    
-    // *** فعال بودن کادر تایپ برای پیام‌های ذخیره شده + لود از دیتابیس ***
     } else if (type === 'saved') {
         if (chatInputArea) chatInputArea.style.display = 'block'; 
-        
         if (typeof DB !== 'undefined') {
             DB.getMessages('saved').then(msgs => {
                 if (msgs.length === 0) {
@@ -148,11 +142,8 @@ function openChat(name, type) {
                 chatBox.scrollTop = chatBox.scrollHeight;
             });
         }
-    
-    // *** چت‌های عادی (گروه‌ها و مخاطبین) + لود از دیتابیس ***
     } else {
         if (chatInputArea) chatInputArea.style.display = 'block';
-        
         if (typeof DB !== 'undefined') {
             DB.getMessages(name).then(msgs => {
                 if (msgs.length === 0) {
@@ -176,7 +167,7 @@ function openChat(name, type) {
 
 function closeChat() { 
     chatRoom.style.display = 'none'; 
-    if (chatInputArea) chatInputArea.style.display = 'block'; // برگرداندن نوار پایین
+    if (chatInputArea) chatInputArea.style.display = 'block'; 
 }
 
 // --- 4. ارسال پیام ---
@@ -195,15 +186,13 @@ function sendMessage() {
     const currentChat = chatTitle.textContent;
     
     if (text === '') return;
-    if (currentChat === 'تیم NEX') return; // جلوگیری از ارسال در تیم NEX
+    if (currentChat === 'تیم NEX') return;
 
-    // *** ذخیره در دیتابیس ***
     if (typeof DB !== 'undefined') {
         const chatId = currentChat === 'پیام‌های ذخیره شده' ? 'saved' : currentChat;
         DB.saveMessage(chatId, text, 'me');
     }
 
-    // نمایش پیام روی صفحه
     const newMsg = document.createElement('div');
     newMsg.classList.add('message', 'msg-sent');
     newMsg.textContent = text;
@@ -261,4 +250,4 @@ function closeGroupInfo() {
 function logout() {
     localStorage.removeItem('nexUser');
     location.reload();
-                                                                  }
+}
