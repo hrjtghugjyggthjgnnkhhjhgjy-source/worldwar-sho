@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
     <meta name="color-scheme" content="dark">
+    
+    <!-- لینک به فایل‌های استایل و آیکون‌ها -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- *** این خط برای نصب اپ (PWA) خیلی مهمه *** -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0078ff">
 </head>
 <body>
 
     <div class="app-container" id="appContainer">
         
-        <!-- هدر -->
+        <!-- هدر (NEX با آیدی) -->
         <div class="app-header">
             <h2 class="header-title" id="mainHeaderTitle">NEX</h2>
         </div>
 
-        <!-- محتوای تب‌ها -->
         <div class="tab-content">
-            
             <!-- تب چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="search-container">
@@ -98,7 +102,6 @@
                     <div class="service-item"><i class="fas fa-plane-departure"></i><span>عوارض خروج</span></div>
                 </div>
             </div>
-
         </div>
 
         <!-- محیط چت -->
@@ -119,7 +122,7 @@
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
                     <input type="text" id="messageInput" class="message-input" placeholder="پیام..." autocomplete="off">
-                    <button class="icon-btn" onclick="alert('به زودی...')"><i class="fas fa-paperclip"></i></button>
+                    <button class="icon-btn"><i class="fas fa-paperclip"></i></button>
                     <button class="icon-btn" id="micBtn"><i class="fas fa-microphone"></i></button>
                     <button class="icon-btn send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
                 </div>
@@ -199,4 +202,4 @@
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-                                                                                                                     </html>
+                                                                                                                                     </html>
