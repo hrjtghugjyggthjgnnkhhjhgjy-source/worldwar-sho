@@ -182,3 +182,19 @@ body { height: 100dvh; width: 100vw; overflow: hidden; background-color: #0b141a
 .member-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; color: #fff; }
 .member-name { font-size: 15px; color: #eee; flex-grow: 1; }
 .member-role { font-size: 12px; color: #2a9df4; }
+/* --- استایل منوی راست کلیک (Context Menu) --- */
+.context-menu {
+    position: fixed; z-index: 9999;
+    background-color: #2a2a2a; border-radius: 12px;
+    border: 1px solid #444; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    display: none; flex-direction: column; min-width: 160px; overflow: hidden;
+}
+.context-menu.show { display: flex; }
+.context-item {
+    padding: 12px 15px; color: #eee; font-size: 14px;
+    display: flex; align-items: center; gap: 10px; cursor: pointer;
+    border-bottom: 1px solid #333;
+}
+.context-item:last-child { border-bottom: none; }
+.context-item:active { background-color: #444; }
+.context-item i { width: 18px; text-align: center; color: #aaa; }
