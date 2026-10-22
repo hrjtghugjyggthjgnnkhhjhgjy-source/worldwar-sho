@@ -12,12 +12,14 @@
 
     <div class="app-container" id="appContainer">
         
-        <!-- هدر (NEX با آیدی) -->
+        <!-- هدر -->
         <div class="app-header">
             <h2 class="header-title" id="mainHeaderTitle">NEX</h2>
         </div>
 
+        <!-- محتوای تب‌ها -->
         <div class="tab-content">
+            
             <!-- تب چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="search-container">
@@ -40,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            <!-- پایان تب چت‌ها -->
 
             <!-- تب مخاطبین -->
             <div class="tab-pane" id="tab-contacts">
@@ -68,8 +71,9 @@
                     </div>
                 </div>
             </div>
+            <!-- پایان تب مخاطبین -->
 
-            <!-- تب پروفایل -->
+            <!-- تب پروفایل (تنها جای کاربر نکس) -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
@@ -83,6 +87,7 @@
                 </div>
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
+            <!-- پایان تب پروفایل -->
 
             <!-- تب خدمات -->
             <div class="tab-pane" id="tab-services">
@@ -96,7 +101,9 @@
                     <div class="service-item"><i class="fas fa-plane-departure"></i><span>عوارض خروج</span></div>
                 </div>
             </div>
-        </div> 
+            <!-- پایان تب خدمات -->
+
+        </div> <!-- پایان tab-content -->
 
         <!-- محیط چت -->
         <div class="chat-room" id="chatRoom">
@@ -106,10 +113,12 @@
                 <i class="fas fa-info-circle" style="margin-right: auto; color: #fff; cursor: pointer;" onclick="showGroupInfoForCurrentChat()"></i>
             </div>
             <div class="chat-messages" id="chatBox"></div>
+            
             <div class="emoji-panel" id="emojiPanel">
                 <div class="emoji-tabs" id="emojiTabs"></div>
                 <div class="emoji-grid" id="emojiGrid"></div>
             </div>
+
             <div class="chat-input-area" id="chatInputArea">
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
@@ -118,7 +127,7 @@
                     <button class="icon-btn send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
-        </div> 
+        </div> <!-- پایان محیط چت -->
 
         <!-- منوی پایین -->
         <div class="bottom-nav">
@@ -128,7 +137,7 @@
             <div class="nav-item" id="nav-services" onclick="switchTab('services')"><div class="nav-icon-box"><i class="fas fa-th-large"></i></div><span>خدمات</span></div>
         </div>
 
-    </div> 
+    </div> <!-- پایان app-container -->
 
     <!-- پنل ساخت گروه -->
     <div class="modal-overlay" id="createGroupModal">
@@ -193,4 +202,4 @@
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-                                                                            </html>
+</html>
