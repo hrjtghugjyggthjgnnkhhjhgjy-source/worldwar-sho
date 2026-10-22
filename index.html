@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
     <meta name="color-scheme" content="dark">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -20,7 +19,7 @@
         </div>
 
         <div class="tab-content">
-            <!-- تب چت‌ها -->
+            <!-- تب 1: چت‌ها -->
             <div class="tab-pane active" id="tab-chats">
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="جستجوی گفتگوها">
@@ -43,7 +42,7 @@
                 </div>
             </div>
 
-            <!-- تب مخاطبین -->
+            <!-- تب 2: مخاطبین -->
             <div class="tab-pane" id="tab-contacts">
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="جستجوی مخاطبین">
@@ -71,7 +70,7 @@
                 </div>
             </div>
 
-            <!-- تب پروفایل (تنها جایی که کاربر نکس نوشته شده) -->
+            <!-- تب 3: پروفایل (فقط اینجا کاربر نکس هست) -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
@@ -86,7 +85,7 @@
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
 
-            <!-- تب خدمات -->
+            <!-- تب 4: خدمات -->
             <div class="tab-pane" id="tab-services">
                 <div class="services-header"><h3>خدمات پرکاربرد</h3></div>
                 <div class="services-grid">
@@ -98,7 +97,7 @@
                     <div class="service-item"><i class="fas fa-plane-departure"></i><span>عوارض خروج</span></div>
                 </div>
             </div>
-        </div>
+        </div> <!-- پایان تب‌ها -->
 
         <!-- محیط چت -->
         <div class="chat-room" id="chatRoom">
@@ -114,7 +113,6 @@
                 <div class="emoji-grid" id="emojiGrid"></div>
             </div>
 
-            <!-- نوار پایین چت (تایپ کپسولی) -->
             <div class="chat-input-area" id="chatInputArea">
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
@@ -123,7 +121,7 @@
                     <button class="icon-btn send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
-        </div>
+        </div> <!-- پایان محیط چت -->
 
         <!-- منوی پایین (۴ تب) -->
         <div class="bottom-nav">
@@ -132,7 +130,8 @@
             <div class="nav-item" id="nav-profile" onclick="switchTab('profile')"><div class="nav-icon-box"><i class="fas fa-user-circle"></i></div><span>پروفایل</span></div>
             <div class="nav-item" id="nav-services" onclick="switchTab('services')"><div class="nav-icon-box"><i class="fas fa-th-large"></i></div><span>خدمات</span></div>
         </div>
-    </div>
+
+    </div> <!-- پایان اپلیکیشن اصلی -->
 
     <!-- پنل ساخت گروه -->
     <div class="modal-overlay" id="createGroupModal">
@@ -193,8 +192,9 @@
         </div>
     </div>
 
+    <!-- اسکریپت‌ها -->
     <script src="database.js"></script>
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-    </html>
+                    </html>
