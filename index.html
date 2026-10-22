@@ -42,7 +42,6 @@
                     </div>
                 </div>
             </div>
-            <!-- پایان تب چت‌ها -->
 
             <!-- تب مخاطبین -->
             <div class="tab-pane" id="tab-contacts">
@@ -71,9 +70,8 @@
                     </div>
                 </div>
             </div>
-            <!-- پایان تب مخاطبین -->
 
-            <!-- تب پروفایل (تنها جای کاربر نکس) -->
+            <!-- تب پروفایل -->
             <div class="tab-pane" id="tab-profile">
                 <div class="profile-header">
                     <div class="profile-avatar"><i class="fas fa-user"></i></div>
@@ -87,7 +85,6 @@
                 </div>
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
             </div>
-            <!-- پایان تب پروفایل -->
 
             <!-- تب خدمات -->
             <div class="tab-pane" id="tab-services">
@@ -101,9 +98,8 @@
                     <div class="service-item"><i class="fas fa-plane-departure"></i><span>عوارض خروج</span></div>
                 </div>
             </div>
-            <!-- پایان تب خدمات -->
 
-        </div> <!-- پایان tab-content -->
+        </div>
 
         <!-- محیط چت -->
         <div class="chat-room" id="chatRoom">
@@ -123,11 +119,12 @@
                 <div class="chat-input-container" id="chatInputContainer">
                     <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
                     <input type="text" id="messageInput" class="message-input" placeholder="پیام..." autocomplete="off">
+                    <button class="icon-btn" onclick="alert('به زودی...')"><i class="fas fa-paperclip"></i></button>
                     <button class="icon-btn" id="micBtn"><i class="fas fa-microphone"></i></button>
                     <button class="icon-btn send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
-        </div> <!-- پایان محیط چت -->
+        </div>
 
         <!-- منوی پایین -->
         <div class="bottom-nav">
@@ -137,7 +134,7 @@
             <div class="nav-item" id="nav-services" onclick="switchTab('services')"><div class="nav-icon-box"><i class="fas fa-th-large"></i></div><span>خدمات</span></div>
         </div>
 
-    </div> <!-- پایان app-container -->
+    </div>
 
     <!-- پنل ساخت گروه -->
     <div class="modal-overlay" id="createGroupModal">
@@ -202,4 +199,4 @@
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+                                                                                                                     </html>
