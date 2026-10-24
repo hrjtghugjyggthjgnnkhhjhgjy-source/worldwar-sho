@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
     <meta name="color-scheme" content="dark light">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
@@ -15,7 +14,6 @@
 
     <div class="app-container" id="appContainer">
         
-        <!-- هدر -->
         <div class="app-header">
             <h2 class="header-title" id="mainHeaderTitle">NEX</h2>
         </div>
@@ -102,21 +100,30 @@
             </div>
         </div>
 
-        <!-- محیط چت (برای گروه و کانال) -->
+        <!-- محیط چت (هدر دقیقاً مثل تلگرام) -->
         <div class="chat-room" id="chatRoom">
             <div class="chat-room-header">
+                <!-- فلش برگشت (سمت چپ) -->
                 <button class="back-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
-                <div class="chat-room-title-box">
-                    <h4 id="chatRoomTitle">چت</h4>
-                    <span id="chatRoomSubtitle" class="chat-subtitle">0 عضو</span>
+                
+                <!-- آواتار و اسم (وسط) -->
+                <div class="chat-header-info">
+                    <div class="chat-header-avatar" id="chatHeaderAvatar"><i class="fas fa-user"></i></div>
+                    <div class="chat-header-text">
+                        <h4 id="chatRoomTitle">چت</h4>
+                        <span id="chatRoomSubtitle">آنلاین</span>
+                    </div>
                 </div>
-                <i class="fas fa-info-circle" style="margin-right: auto; color: var(--text-color); cursor: pointer;" onclick="showGroupInfoForCurrentChat()"></i>
+                
+                <!-- سه نقطه (سمت راست) -->
+                <div class="header-menu-btn" onclick="toggleChatMenu()"><i class="fas fa-ellipsis-v"></i></div>
             </div>
             
-            <!-- پیام سنجاق شده (اختیاری) -->
-            <div class="pinned-message" id="pinnedMessage" style="display: none;">
-                <i class="fas fa-thumbtack"></i>
-                <span>پیام سنجاق شده...</span>
+            <!-- منوی کشویی سه نقطه -->
+            <div class="chat-menu-drawer" id="chatMenuDrawer">
+                <div class="drawer-item" onclick="showGroupInfoForCurrentChat()"><i class="fas fa-info-circle"></i> اطلاعات</div>
+                <div class="drawer-item" onclick="alert('به زودی...')"><i class="fas fa-bell-slash"></i> بی صدا کردن</div>
+                <div class="drawer-item" style="color: #ff3b30;" onclick="closeChat()"><i class="fas fa-sign-out-alt"></i> خروج از چت</div>
             </div>
 
             <div class="chat-messages" id="chatBox"></div>
@@ -126,10 +133,11 @@
                 <div class="emoji-grid" id="emojiGrid"></div>
             </div>
 
-            <!-- کادر تایپ (بدون دکمه‌های اضافی، فقط تایپ و ارسال) -->
             <div class="chat-input-area" id="chatInputArea">
                 <div class="chat-input-container" id="chatInputContainer">
+                    <button class="icon-btn" onclick="toggleEmojiPanel()"><i class="fas fa-smile"></i></button>
                     <input type="text" id="messageInput" class="message-input" placeholder="پیام..." autocomplete="off">
+                    <button class="icon-btn"><i class="fas fa-paperclip"></i></button>
                     <button class="icon-btn" id="micBtn"><i class="fas fa-microphone"></i></button>
                     <button class="icon-btn send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
                 </div>
@@ -146,7 +154,7 @@
 
     </div>
 
-    <!-- پنل ساخت گروه (همون قبلی) -->
+    <!-- پنل ساخت گروه -->
     <div class="modal-overlay" id="createGroupModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -178,12 +186,12 @@
         </div>
     </div>
 
-    <!-- صفحه اطلاعات گروه/کانال (مثل تلگرام) -->
+    <!-- صفحه اطلاعات گروه -->
     <div class="group-info-screen" id="groupInfoScreen">
         <div class="group-info-header">
             <button class="back-btn" onclick="closeGroupInfo()"><i class="fas fa-arrow-right"></i></button>
-            <h4>اطلاعات</h4>
-            <i class="fas fa-edit" style="color: var(--text-color); cursor: pointer;"></i> <!-- دکمه ویرایش -->
+            <h4>اطلاعات گروه</h4>
+            <i class="fas fa-edit" style="color: var(--text-color); cursor: pointer;"></i>
         </div>
         <div class="group-info-content">
             <div class="group-main-info">
@@ -192,12 +200,12 @@
                 <p class="group-members-count" id="groupMembersCount">۰ عضو</p>
             </div>
             <div class="group-section">
-                <h4 class="section-title">درباره</h4>
+                <h4 class="section-title">درباره گروه</h4>
                 <div class="section-content" id="groupDescription">...</div>
             </div>
             <div class="group-row">
                 <div class="row-icon"><i class="fas fa-link"></i></div>
-                <div class="row-text"><span class="row-label">شناسه</span><span class="row-value" id="groupLinkDisplay">@...</span></div>
+                <div class="row-text"><span class="row-label">شناسه گروه</span><span class="row-value" id="groupLinkDisplay">@...</span></div>
             </div>
             <div class="group-section">
                 <div class="section-header-flex"><h4 class="section-title">اعضا</h4></div>
