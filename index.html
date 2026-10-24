@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
-    <meta name="color-scheme" content="dark">
+    <meta name="color-scheme" content="dark light">
     
     <!-- لینک به فایل‌های استایل و آیکون‌ها -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- *** این خط برای نصب اپ (PWA) خیلی مهمه *** -->
+    <!-- لینک به مانیفست برای نصب PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0078ff">
 </head>
@@ -18,7 +18,7 @@
 
     <div class="app-container" id="appContainer">
         
-        <!-- هدر (NEX با آیدی) -->
+        <!-- هدر -->
         <div class="app-header">
             <h2 class="header-title" id="mainHeaderTitle">NEX</h2>
         </div>
@@ -85,6 +85,13 @@
                     <div class="setting-item"><div class="setting-icon"><i class="far fa-user"></i></div><span>حساب کاربری</span></div>
                     <div class="setting-item" onclick="openChat('پیام‌های ذخیره شده', 'saved')"><div class="setting-icon"><i class="fas fa-bookmark"></i></div><span>پیام‌های ذخیره شده</span></div>
                     <div class="setting-item"><div class="setting-icon"><i class="fas fa-cog"></i></div><span>تنظیمات</span></div>
+                    
+                    <!-- دکمه تغییر تم -->
+                    <div class="setting-item" onclick="toggleTheme()">
+                        <div class="setting-icon"><i class="fas fa-moon"></i></div>
+                        <span>تغییر تم (روشن/تاریک)</span>
+                    </div>
+
                     <div class="setting-item" onclick="logout()"><div class="setting-icon" style="color: #ff3b30;"><i class="fas fa-sign-out-alt"></i></div><span style="color: #ff3b30;">خروج از حساب</span></div>
                 </div>
                 <div class="app-version"><span>NEX نسخه ۱.۰.۰</span></div>
@@ -109,7 +116,7 @@
             <div class="chat-room-header">
                 <button class="back-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
                 <h4 id="chatRoomTitle">چت</h4>
-                <i class="fas fa-info-circle" style="margin-right: auto; color: #fff; cursor: pointer;" onclick="showGroupInfoForCurrentChat()"></i>
+                <i class="fas fa-info-circle" style="margin-right: auto; color: var(--text-color); cursor: pointer;" onclick="showGroupInfoForCurrentChat()"></i>
             </div>
             <div class="chat-messages" id="chatBox"></div>
             
@@ -202,4 +209,4 @@
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-                                                                                                                                     </html>
+                    </html>
