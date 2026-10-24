@@ -100,13 +100,30 @@ async function openChat(name, type) {
     chatRoom.style.display = 'flex';
     chatBox.innerHTML = ''; 
 
+    // --- تنظیم هدر چت (آواتار و وضعیت) ---
+    const avatarDiv = document.getElementById('chatHeaderAvatar');
+    const subtitle = document.getElementById('chatRoomSubtitle');
+    
+    if (avatarDiv && subtitle) {
+        if (type === 'group' || type === 'channel') {
+            avatarDiv.innerHTML = '<i class="fas fa-users"></i>';
+            subtitle.textContent = 'گروه';
+        } else if (type === 'saved') {
+            avatarDiv.innerHTML = '<i class="fas fa-bookmark"></i>';
+            subtitle.textContent = 'ذخیره شده';
+        } else {
+            avatarDiv.innerHTML = '<i class="fas fa-user"></i>';
+            subtitle.textContent = 'آنلاین';
+        }
+    }
+
+    // --- لود کردن پیام‌ها ---
     if (type === 'nex') {
         if (chatInputArea) chatInputArea.style.display = 'none'; 
         chatBox.innerHTML = `<div class="message msg-received" style="background: #0078ff; color: white;">سلام! به پیام‌رسان <b>NEX</b> خوش آمدید. 🎉</div>`;
     } else {
         if (chatInputArea) chatInputArea.style.display = 'block'; 
         
-        // *** لود کردن پیام‌ها از دیتابیس ***
         if (typeof DB !== 'undefined') {
             const chatId = name === 'پیام‌های ذخیره شده' ? 'saved' : name;
             try {
@@ -127,9 +144,12 @@ async function openChat(name, type) {
 function closeChat() { 
     chatRoom.style.display = 'none'; 
     if (chatInputArea) chatInputArea.style.display = 'block'; 
+    // بستن منوی سه نقطه
+    const menu = document.getElementById('chatMenuDrawer');
+    if (menu) menu.classList.remove('show');
 }
 
-// --- 6. ارسال پیام (با دیتابیس) ---
+// --- 6. ارسال پیام ---
 messageInput.addEventListener('input', function() {
     const hasText = this.value.trim().length > 0;
     sendBtn.style.display = hasText ? 'flex' : 'none';
@@ -142,12 +162,10 @@ async function sendMessage() {
     
     if (text === '' || currentChat === 'تیم NEX') return;
 
-    // *** ذخیره در دیتابیس ***
     if (typeof DB !== 'undefined') {
         const chatId = currentChat === 'پیام‌های ذخیره شده' ? 'saved' : currentChat;
         try {
             await DB.saveMessage(chatId, text, 'me');
-            console.log("پیام با موفقیت در دیتابیس ذخیره شد.");
         } catch (error) {
             console.error("خطا در ذخیره در دیتابیس:", error);
         }
@@ -170,7 +188,22 @@ function renderMessage(text, sender, container) {
 sendBtn.addEventListener('click', sendMessage);
 messageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
 
-// --- 7. منوهای راست کلیک ---
+// --- 7. منوی سه نقطه هدر چت ---
+function toggleChatMenu() {
+    const menu = document.getElementById('chatMenuDrawer');
+    if (menu) menu.classList.toggle('show');
+}
+
+// بستن منوی سه نقطه با کلیک بیرون
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('chatMenuDrawer');
+    const btn = document.querySelector('.header-menu-btn');
+    if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove('show');
+    }
+});
+
+// --- 8. منوهای راست کلیک (کپی و حذف) ---
 function createContextMenu(items) {
     let menu = document.getElementById('contextMenu');
     if (menu) menu.remove();
@@ -214,7 +247,7 @@ function showDeleteChatMenu(x, y, chatElement, chatName) {
     document.addEventListener('click', () => menu.remove(), { once: true });
 }
 
-// --- 8. اطلاعات گروه و خروج ---
+// --- 9. اطلاعات گروه و خروج ---
 function loadGroupInfo(groupName) {
     const groups = JSON.parse(localStorage.getItem('nexGroups')) || {};
     const info = groups[groupName];
@@ -232,7 +265,7 @@ function showGroupInfoForCurrentChat() { loadGroupInfo(chatTitle.textContent); }
 function closeGroupInfo() { document.getElementById('groupInfoScreen').style.display = 'none'; }
 function logout() { location.reload(); }
 
-// --- 9. بارگذاری تم ذخیره شده در هنگام باز شدن اپ ---
+// --- 10. بارگذاری تم ذخیره شده ---
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('nexTheme');
     if (savedTheme === 'light') {
