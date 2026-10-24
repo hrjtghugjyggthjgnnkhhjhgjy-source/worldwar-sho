@@ -1,19 +1,36 @@
-// --- 1. تب‌ها ---
+// --- 1. مدیریت تب‌ها ---
 function switchTab(tabName) {
     document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
     
     const targetTab = document.getElementById('tab-' + tabName);
     const targetNav = document.getElementById('nav-' + tabName);
+    
     if (targetTab && targetNav) {
         targetTab.classList.add('active');
         targetNav.classList.add('active');
     }
+
+    // نمایش NEX فقط در تب چت‌ها
     const headerTitle = document.getElementById('mainHeaderTitle');
-    if (headerTitle) headerTitle.style.visibility = tabName === 'chats' ? 'visible' : 'hidden';
+    if (headerTitle) {
+        headerTitle.style.visibility = tabName === 'chats' ? 'visible' : 'hidden';
+    }
 }
 
-// --- 2. ساخت گروه ---
+// --- 2. قابلیت تغییر تم (Light/Dark) ---
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('light-theme');
+    
+    if (body.classList.contains('light-theme')) {
+        localStorage.setItem('nexTheme', 'light');
+    } else {
+        localStorage.setItem('nexTheme', 'dark');
+    }
+}
+
+// --- 3. ساخت گروه جدید ---
 function createNewChat(type) {
     if (type === 'channel') return alert('ساخت کانال فعلاً در دسترس نیست.');
     document.getElementById('createGroupModal').classList.add('show');
@@ -52,15 +69,7 @@ function submitCreateGroup() {
     switchTab('chats');
 }
 
-// --- 3. مدیریت چت ---
-const chatRoom = document.getElementById('chatRoom');
-const chatBox = document.getElementById('chatBox');
-const chatTitle = document.getElementById('chatRoomTitle');
-const messageInput = document.getElementById('messageInput');
-const sendBtn = document.getElementById('sendBtn');
-const micBtn = document.getElementById('micBtn');
-const chatInputArea = document.getElementById('chatInputArea');
-
+// --- 4. مدیریت لیست چت‌ها ---
 function addChatToList(name, type, memberCount = '') {
     const chatList = document.getElementById('mainChatList');
     const newChat = document.createElement('div');
@@ -70,7 +79,6 @@ function addChatToList(name, type, memberCount = '') {
     let touchTimer;
     newChat.addEventListener('touchstart', (e) => { touchTimer = setTimeout(() => { e.preventDefault(); showDeleteChatMenu(e.touches[0].clientX, e.touches[0].clientY, newChat, name); }, 600); });
     newChat.addEventListener('touchend', () => clearTimeout(touchTimer));
-    newChat.addEventListener('contextmenu', (e) => { e.preventDefault(); showDeleteChatMenu(e.clientX, e.clientY, newChat, name); });
 
     const icon = type === 'group' ? 'fa-users' : (type === 'saved' ? 'fa-bookmark' : 'fa-user');
     const bg = type === 'group' ? 'bg-blue' : (type === 'saved' ? 'bg-green' : 'bg-purple');
@@ -78,44 +86,73 @@ function addChatToList(name, type, memberCount = '') {
     chatList.prepend(newChat);
 }
 
-function openChat(name, type) {
+// --- 5. مدیریت محیط چت (با دیتابیس) ---
+const chatRoom = document.getElementById('chatRoom');
+const chatBox = document.getElementById('chatBox');
+const chatTitle = document.getElementById('chatRoomTitle');
+const messageInput = document.getElementById('messageInput');
+const sendBtn = document.getElementById('sendBtn');
+const micBtn = document.getElementById('micBtn');
+const chatInputArea = document.getElementById('chatInputArea');
+
+async function openChat(name, type) {
     chatTitle.textContent = name;
     chatRoom.style.display = 'flex';
     chatBox.innerHTML = ''; 
+
     if (type === 'nex') {
         if (chatInputArea) chatInputArea.style.display = 'none'; 
         chatBox.innerHTML = `<div class="message msg-received" style="background: #0078ff; color: white;">سلام! به پیام‌رسان <b>NEX</b> خوش آمدید. 🎉</div>`;
     } else {
         if (chatInputArea) chatInputArea.style.display = 'block'; 
+        
+        // *** لود کردن پیام‌ها از دیتابیس ***
         if (typeof DB !== 'undefined') {
             const chatId = name === 'پیام‌های ذخیره شده' ? 'saved' : name;
-            DB.getMessages(chatId).then(msgs => {
-                if (msgs.length === 0) chatBox.innerHTML = `<div class="message msg-received" style="text-align:center; background:transparent; color:#7f91a4;">هنوز پیامی ارسال نشده.</div>`;
-                else msgs.forEach(m => renderMessage(m.text, m.sender, chatBox));
-                chatBox.scrollTop = chatBox.scrollHeight;
-            });
+            try {
+                const msgs = await DB.getMessages(chatId);
+                if (msgs.length === 0) {
+                    chatBox.innerHTML = `<div class="message msg-received" style="text-align:center; background:transparent; color:#7f91a4;">هنوز پیامی ارسال نشده.</div>`;
+                } else {
+                    msgs.forEach(m => renderMessage(m.text, m.sender, chatBox));
+                }
+            } catch (error) {
+                console.error("خطا در خواندن دیتابیس:", error);
+            }
         }
     }
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function closeChat() { chatRoom.style.display = 'none'; if (chatInputArea) chatInputArea.style.display = 'block'; }
+function closeChat() { 
+    chatRoom.style.display = 'none'; 
+    if (chatInputArea) chatInputArea.style.display = 'block'; 
+}
 
-// --- 4. ارسال پیام و منوها ---
+// --- 6. ارسال پیام (با دیتابیس) ---
 messageInput.addEventListener('input', function() {
     const hasText = this.value.trim().length > 0;
     sendBtn.style.display = hasText ? 'flex' : 'none';
     micBtn.style.display = hasText ? 'none' : 'flex';
 });
 
-function sendMessage() {
+async function sendMessage() {
     const text = messageInput.value.trim();
     const currentChat = chatTitle.textContent;
+    
     if (text === '' || currentChat === 'تیم NEX') return;
+
+    // *** ذخیره در دیتابیس ***
     if (typeof DB !== 'undefined') {
         const chatId = currentChat === 'پیام‌های ذخیره شده' ? 'saved' : currentChat;
-        DB.saveMessage(chatId, text, 'me');
+        try {
+            await DB.saveMessage(chatId, text, 'me');
+            console.log("پیام با موفقیت در دیتابیس ذخیره شد.");
+        } catch (error) {
+            console.error("خطا در ذخیره در دیتابیس:", error);
+        }
     }
+
     renderMessage(text, 'me', chatBox);
     chatBox.scrollTop = chatBox.scrollHeight;
     messageInput.value = '';
@@ -127,17 +164,13 @@ function renderMessage(text, sender, container) {
     const msg = document.createElement('div');
     msg.classList.add('message', sender === 'me' ? 'msg-sent' : 'msg-received');
     msg.textContent = text;
-    msg.addEventListener('contextmenu', (e) => { e.preventDefault(); showMessageMenu(e.clientX, e.clientY, text, msg); });
-    let timer;
-    msg.addEventListener('touchstart', (e) => { timer = setTimeout(() => { e.preventDefault(); showMessageMenu(e.touches[0].clientX, e.touches[0].clientY, text, msg); }, 500); });
-    msg.addEventListener('touchend', () => clearTimeout(timer));
     container.appendChild(msg);
 }
 
 sendBtn.addEventListener('click', sendMessage);
 messageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } });
 
-// --- 5. منوهای راست کلیک ---
+// --- 7. منوهای راست کلیک ---
 function createContextMenu(items) {
     let menu = document.getElementById('contextMenu');
     if (menu) menu.remove();
@@ -154,7 +187,6 @@ function createContextMenu(items) {
     document.body.appendChild(menu);
     return menu;
 }
-
 function showMessageMenu(x, y, text, element) {
     const menu = createContextMenu([
         { label: 'کپی کردن', icon: 'fa-copy', action: () => { navigator.clipboard.writeText(text); menu.remove(); } },
@@ -165,7 +197,6 @@ function showMessageMenu(x, y, text, element) {
     menu.classList.add('show');
     document.addEventListener('click', () => menu.remove(), { once: true });
 }
-
 function showDeleteChatMenu(x, y, chatElement, chatName) {
     const menu = createContextMenu([
         { label: 'حذف گفتگو', icon: 'fa-trash', style: 'color: #ff3b30;', action: () => {
@@ -183,7 +214,7 @@ function showDeleteChatMenu(x, y, chatElement, chatName) {
     document.addEventListener('click', () => menu.remove(), { once: true });
 }
 
-// --- 6. اطلاعات گروه و خروج ---
+// --- 8. اطلاعات گروه و خروج ---
 function loadGroupInfo(groupName) {
     const groups = JSON.parse(localStorage.getItem('nexGroups')) || {};
     const info = groups[groupName];
@@ -200,20 +231,8 @@ function loadGroupInfo(groupName) {
 function showGroupInfoForCurrentChat() { loadGroupInfo(chatTitle.textContent); }
 function closeGroupInfo() { document.getElementById('groupInfoScreen').style.display = 'none'; }
 function logout() { location.reload(); }
-// --- قابلیت تغییر تم (Light/Dark) ---
-function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('light-theme');
-    
-    // ذخیره تم انتخابی در حافظه مرورگر
-    if (body.classList.contains('light-theme')) {
-        localStorage.setItem('nexTheme', 'light');
-    } else {
-        localStorage.setItem('nexTheme', 'dark');
-    }
-}
 
-// --- بارگذاری تم ذخیره شده در هنگام باز شدن اپ ---
+// --- 9. بارگذاری تم ذخیره شده در هنگام باز شدن اپ ---
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('nexTheme');
     if (savedTheme === 'light') {
