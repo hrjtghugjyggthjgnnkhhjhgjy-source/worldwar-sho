@@ -200,3 +200,23 @@ function loadGroupInfo(groupName) {
 function showGroupInfoForCurrentChat() { loadGroupInfo(chatTitle.textContent); }
 function closeGroupInfo() { document.getElementById('groupInfoScreen').style.display = 'none'; }
 function logout() { location.reload(); }
+// --- قابلیت تغییر تم (Light/Dark) ---
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('light-theme');
+    
+    // ذخیره تم انتخابی در حافظه مرورگر
+    if (body.classList.contains('light-theme')) {
+        localStorage.setItem('nexTheme', 'light');
+    } else {
+        localStorage.setItem('nexTheme', 'dark');
+    }
+}
+
+// --- بارگذاری تم ذخیره شده در هنگام باز شدن اپ ---
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('nexTheme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+});
