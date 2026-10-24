@@ -207,3 +207,114 @@ body {
 .member-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; color: #fff; }
 .member-name { font-size: 15px; color: #eee; flex-grow: 1; }
 .member-role { font-size: 12px; color: var(--accent-color); }
+/* --- استایل هدر چت و منوی سه نقطه --- */
+.chat-room-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    height: 65px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--card-bg);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    flex-grow: 1;
+    margin: 0 10px;
+    justify-content: center;
+}
+
+.chat-header-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+}
+
+.chat-header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.chat-header-text h4 {
+    font-size: 14px;
+    color: var(--text-color);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.chat-header-text span {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.header-menu-btn {
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* منوی کشویی سه نقطه */
+.chat-menu-drawer {
+    position: absolute;
+    top: 65px;
+    right: -250px; /* مخفی */
+    width: 200px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px 0 0 15px;
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
+    z-index: 100;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.chat-menu-drawer.show {
+    right: 0; /* نمایش */
+}
+
+.chat-menu-drawer .drawer-item {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chat-menu-drawer .drawer-item:last-child {
+    border-bottom: none;
+}
+
+.chat-menu-drawer .drawer-item i {
+    color: var(--text-secondary);
+    font-size: 18px;
+}
