@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>NEX</title>
     <meta name="color-scheme" content="dark light">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
@@ -100,13 +101,13 @@
             </div>
         </div>
 
-        <!-- محیط چت (هدر دقیقاً مثل تلگرام) -->
+        <!-- محیط چت -->
         <div class="chat-room" id="chatRoom">
             <div class="chat-room-header">
-                <!-- سه نقطه (سمت چپ) -->
-                <div class="header-menu-btn glass-btn" onclick="toggleChatMenu()"><i class="fas fa-ellipsis-v"></i></div>
+                <!-- سه نقطه (سمت راست) -->
+                <button class="glass-btn" onclick="toggleChatMenu()"><i class="fas fa-ellipsis-v"></i></button>
                 
-                <!-- آواتار و اسم (وسط - داخل کادر شیشه‌ای) -->
+                <!-- آواتار و اسم (وسط) -->
                 <div class="chat-header-info glass-pill">
                     <div class="chat-header-avatar" id="chatHeaderAvatar"><i class="fas fa-user"></i></div>
                     <div class="chat-header-text">
@@ -115,17 +116,10 @@
                     </div>
                 </div>
                 
-                <!-- فلش برگشت (سمت راست) -->
-                <button class="back-btn glass-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
+                <!-- دکمه بازگشت (سمت چپ) -->
+                <button class="glass-btn back-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
             </div>
             
-            <!-- منوی کشویی سه نقطه -->
-            <div class="chat-menu-drawer" id="chatMenuDrawer">
-                <div class="drawer-item" onclick="showGroupInfoForCurrentChat()"><i class="fas fa-info-circle"></i> اطلاعات</div>
-                <div class="drawer-item" onclick="alert('به زودی...')"><i class="fas fa-bell-slash"></i> بی صدا کردن</div>
-                <div class="drawer-item" style="color: #ff3b30;" onclick="closeChat()"><i class="fas fa-sign-out-alt"></i> خروج از چت</div>
-            </div>
-
             <div class="chat-messages" id="chatBox"></div>
             
             <div class="emoji-panel" id="emojiPanel">
@@ -154,68 +148,8 @@
 
     </div>
 
-    <!-- پنل ساخت گروه -->
-    <div class="modal-overlay" id="createGroupModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>ساخت گروه جدید</h3>
-                <button class="close-btn" onclick="closeCreateGroupModal()"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <label class="modal-label">نوع گروه</label>
-                <div class="group-type-selector">
-                    <div class="type-option active" id="typePublic" onclick="selectGroupType('public')"><i class="fas fa-globe"></i> عمومی</div>
-                    <div class="type-option" id="typePrivate" onclick="selectGroupType('private')"><i class="fas fa-lock"></i> خصوصی</div>
-                </div>
-                <div id="publicLinkSection">
-                    <label class="modal-label">لینک گروه (اختیاری)</label>
-                    <input type="text" id="groupLinkInput" class="modal-input" placeholder="مثلاً: my_group" dir="ltr">
-                </div>
-                <label class="modal-label">اسم گروه</label>
-                <input type="text" id="groupNameInput" class="modal-input" placeholder="اسم گروه را وارد کنید...">
-                <label class="modal-label">افزودن مخاطبین</label>
-                <div class="contact-selection-list">
-                    <label class="contact-checkbox"><input type="checkbox" value="عرفان" class="member-checkbox"><div class="member-avatar bg-purple">ع</div> عرفان</label>
-                    <label class="contact-checkbox"><input type="checkbox" value="شروین" class="member-checkbox"><div class="member-avatar bg-gray">ش</div> شروین</label>
-                    <label class="contact-checkbox"><input type="checkbox" value="مامان" class="member-checkbox"><div class="member-avatar bg-green">م</div> مامان</label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn create" onclick="submitCreateGroup()">ساخت گروه</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحه اطلاعات گروه -->
-    <div class="group-info-screen" id="groupInfoScreen">
-        <div class="group-info-header">
-            <button class="back-btn" onclick="closeGroupInfo()"><i class="fas fa-arrow-right"></i></button>
-            <h4>اطلاعات گروه</h4>
-            <i class="fas fa-edit" style="color: var(--text-color); cursor: pointer;"></i>
-        </div>
-        <div class="group-info-content">
-            <div class="group-main-info">
-                <div class="group-avatar-large bg-blue"><i class="fas fa-users"></i></div>
-                <h2 class="group-title" id="groupTitleDisplay">گروه</h2>
-                <p class="group-members-count" id="groupMembersCount">۰ عضو</p>
-            </div>
-            <div class="group-section">
-                <h4 class="section-title">درباره گروه</h4>
-                <div class="section-content" id="groupDescription">...</div>
-            </div>
-            <div class="group-row">
-                <div class="row-icon"><i class="fas fa-link"></i></div>
-                <div class="row-text"><span class="row-label">شناسه گروه</span><span class="row-value" id="groupLinkDisplay">@...</span></div>
-            </div>
-            <div class="group-section">
-                <div class="section-header-flex"><h4 class="section-title">اعضا</h4></div>
-                <div class="member-list" id="groupMemberList"></div>
-            </div>
-        </div>
-    </div>
-
     <script src="database.js"></script>
     <script src="emoji.js"></script>
     <script src="script.js"></script>
 </body>
-    </html>
+</html>
