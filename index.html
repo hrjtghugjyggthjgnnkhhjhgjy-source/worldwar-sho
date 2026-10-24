@@ -103,10 +103,10 @@
         <!-- محیط چت (هدر دقیقاً مثل تلگرام) -->
         <div class="chat-room" id="chatRoom">
             <div class="chat-room-header">
-                <!-- فلش برگشت (سمت چپ) -->
-                <button class="back-btn glass-btn" onclick="closeChat()"><i class="fas fa-arrow-left"></i></button>
+                <!-- سه نقطه (سمت چپ) -->
+                <div class="header-menu-btn glass-btn" onclick="toggleChatMenu()"><i class="fas fa-ellipsis-v"></i></div>
                 
-                <!-- آواتار و اسم (وسط - شیشه‌ای) -->
+                <!-- آواتار و اسم (وسط - داخل کادر شیشه‌ای) -->
                 <div class="chat-header-info glass-pill">
                     <div class="chat-header-avatar" id="chatHeaderAvatar"><i class="fas fa-user"></i></div>
                     <div class="chat-header-text">
@@ -115,8 +115,8 @@
                     </div>
                 </div>
                 
-                <!-- سه نقطه (سمت راست) -->
-                <div class="header-menu-btn glass-btn" onclick="toggleChatMenu()"><i class="fas fa-ellipsis-v"></i></div>
+                <!-- فلش برگشت (سمت راست) -->
+                <button class="back-btn glass-btn" onclick="closeChat()"><i class="fas fa-arrow-right"></i></button>
             </div>
             
             <!-- منوی کشویی سه نقطه -->
